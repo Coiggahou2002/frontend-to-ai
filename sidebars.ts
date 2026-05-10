@@ -12,7 +12,9 @@ const sidebars: SidebarsConfig = {
       label: 'Guides',
       collapsed: false,
       items: [
+        'how-llms-work',
         'python-guide-for-ts-devs',
+        'llm-apis-and-prompts',
         'gpu-and-model-sizing',
         'ai-infra-stack',
         'kv-cache',
