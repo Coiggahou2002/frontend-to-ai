@@ -2,24 +2,30 @@
 
 A collection of guides and resources for front-end developers transitioning into AI engineering.
 
+**📖 Read the guides:** https://coiggahou2002.github.io/frontend-to-ai/
+
 ## Why this exists
 
 The AI engineering landscape moves fast, but it doesn't require starting from scratch. Front-end developers already have strong foundations — JavaScript/TypeScript fluency, API design intuition, product thinking, and shipping muscle. What's missing are specific bridges: a new language (Python), new paradigms (ML pipelines, prompt engineering, embeddings), and a new ecosystem.
 
 This repo provides those bridges — practical, opinionated guides written from the perspective of someone who's made the transition.
 
-## Guides
+## Repo layout
 
-Ordered as a learning path — start from the top and work your way down.
+- `content/en/` — English chapters
+- `content/zh-Hans/` — 中文章节
+- `app/` — Next.js App Router routes (Nextra docs theme)
+- `next.config.mjs`, `mdx-components.tsx` — Nextra configuration
 
-| # | Guide | EN | ZH |
-|---|-------|----|----|
-| 1 | Python for TypeScript Developers | [English](./en/python-guide-for-ts-devs.md) | [中文](./zh/python-guide-for-ts-devs.md) |
-| 2 | GPU and Model Sizing | [English](./en/gpu-and-model-sizing.md) | [中文](./zh/gpu-and-model-sizing.md) |
-| 3 | AI Infrastructure Stack | [English](./en/ai-infra-stack.md) | [中文](./zh/ai-infra-stack.md) |
-| 4 | KV Cache: From Theory to Engineering | [English](./en/kv-cache.md) | [中文](./zh/kv-cache.md) |
-| 5 | LLM Inference and Concurrency Estimation | [English](./en/inference-concurrency.md) | [中文](./zh/inference-concurrency.md) |
-| 6 | LLM Post-Training: SFT to GRPO | [English](./en/post-training.md) | [中文](./zh/post-training.md) |
+## Local development
+
+```bash
+npm install
+npm run dev          # http://localhost:3000/frontend-to-ai/
+npm run build        # static export to ./out/
+```
+
+The site is built with [Nextra](https://nextra.site) and deployed to GitHub Pages via GitHub Actions on every push to `main`.
 
 ## Who is this for
 

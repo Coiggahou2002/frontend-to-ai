@@ -6,5 +6,9 @@
 .idea/
 node_modules/
 .env
-.docusaurus/
-build/
+.env*.local
+
+# Next.js
+.next/
+out/
+next-env.d.ts

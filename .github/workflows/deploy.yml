@@ -24,12 +24,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          DOCUSAURUS_URL: https://coiggahou2002.github.io
-          DOCUSAURUS_BASE_URL: /frontend-to-ai/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: out
 
   deploy:
     environment:

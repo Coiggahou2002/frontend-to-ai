@@ -1,8 +1,3 @@
----
-sidebar_position: 0
-slug: /
----
-
 # Frontend to AI Engineer
 
 A collection of guides and resources for front-end developers transitioning into AI engineering.
