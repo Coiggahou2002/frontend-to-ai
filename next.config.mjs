@@ -1,7 +1,8 @@
 import nextra from 'nextra'
 
 const withNextra = nextra({
-  defaultShowCopyCode: true
+  defaultShowCopyCode: true,
+  unstable_shouldAddLocaleToLinks: true
 })
 
 export default withNextra({
