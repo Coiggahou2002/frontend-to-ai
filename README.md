@@ -10,9 +10,16 @@ This repo provides those bridges — practical, opinionated guides written from 
 
 ## Guides
 
-| Guide | EN | ZH |
-|-------|----|----|
-| Python for TypeScript Developers | [English](./en/python-guide-for-ts-devs.md) | [中文](./zh/python-guide-for-ts-devs.md) |
+Ordered as a learning path — start from the top and work your way down.
+
+| # | Guide | EN | ZH |
+|---|-------|----|----|
+| 1 | Python for TypeScript Developers | [English](./en/python-guide-for-ts-devs.md) | [中文](./zh/python-guide-for-ts-devs.md) |
+| 2 | GPU and Model Sizing | [English](./en/gpu-and-model-sizing.md) | [中文](./zh/gpu-and-model-sizing.md) |
+| 3 | AI Infrastructure Stack | [English](./en/ai-infra-stack.md) | [中文](./zh/ai-infra-stack.md) |
+| 4 | KV Cache: From Theory to Engineering | [English](./en/kv-cache.md) | [中文](./zh/kv-cache.md) |
+| 5 | LLM Inference and Concurrency Estimation | [English](./en/inference-concurrency.md) | [中文](./zh/inference-concurrency.md) |
+| 6 | LLM Post-Training: SFT to GRPO | [English](./en/post-training.md) | [中文](./zh/post-training.md) |
 
 ## Who is this for
 
