@@ -17,15 +17,15 @@ Start from the top and work your way down:
 | 0 | [How LLMs Actually Work](./how-llms-work) | Tokens, next-token prediction, multi-turn conversation, context windows, and sampling |
 | 1 | [Python for TypeScript Developers](./python-guide-for-ts-devs) | Pick up Python fast by mapping it to TypeScript concepts you already know |
 | 2 | [LLM APIs & Prompt Engineering](./llm-apis-and-prompts) | Calling LLMs from code: messages, system prompts, structured output, function calling |
-| 3 | Embeddings, Vector Search & RAG *(coming soon)* | Give the model knowledge it wasn't trained on |
-| 4 | Agents, Tool Use & Orchestration *(coming soon)* | Multi-step LLM systems that can take actions |
+| 3 | [Embeddings, Vector Search & RAG](./embeddings-and-rag) | Give the model knowledge it wasn't trained on |
+| 4 | [Agents, Tool Use & Orchestration](./agents-and-orchestration) | Multi-step LLM systems that can take actions |
 | 5 | [GPU and Model Sizing](./gpu-and-model-sizing) | VRAM, quantization, model tiers, and how to choose the right GPU |
 | 6 | [AI Infrastructure Stack](./ai-infra-stack) | CUDA, cuDNN, NCCL, inference frameworks, and how they fit together |
 | 7 | [KV Cache: From Theory to Engineering](./kv-cache) | How Transformer attention caching works and why it matters for deployment |
 | 8 | [LLM Inference and Concurrency](./inference-concurrency) | Prefill vs decode, memory bandwidth, and how to estimate serving capacity |
-| 9 | Fine-Tuning in Practice *(coming soon)* | Hands-on LoRA/QLoRA fine-tune of Qwen-3B |
+| 9 | [Fine-Tuning in Practice](./fine-tuning) | Hands-on LoRA/QLoRA fine-tune of Qwen-3B |
 | 10 | [LLM Post-Training: SFT to GRPO](./post-training) | How models go from pre-trained weights to useful assistants |
-| 11 | Evaluation & Observability *(coming soon)* | Testing and monitoring non-deterministic LLM systems |
+| 11 | [Evaluation & Observability](./evaluation) | Testing and monitoring non-deterministic LLM systems |
 
 ## Who is this for
 
