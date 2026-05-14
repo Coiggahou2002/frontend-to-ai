@@ -24,15 +24,32 @@ def brute_force_topk(query: np.ndarray, corpus: np.ndarray, k: int) -> list[int]
 直觉：HNSW 是一个**图的跳表**。最底层把每个向量连到它的邻居。越往上层向量越少，但边的跨度更大。一个 query 从顶层进入，贪心地跳向更近的邻居，掉一层，再跳几次，如此反复直到无法再改进。检索是 `O(log N)`，不是 `O(N)`。
 
 ```mermaid
-flowchart TD
-    Q[Query] --> Top[Top layer entry node]
-    Top --> H1[Greedy hop closer]
-    H1 --> Down1[Drop a layer]
-    Down1 --> H2[Greedy hop closer]
-    H2 --> Down2[Drop to bottom layer]
-    Down2 --> H3[Greedy hop in dense graph]
-    H3 --> Cand[Candidate set]
-    Cand --> TopK[Score and return top-k]
+graph TB
+    Q(["★ Query"])
+
+    subgraph L2 ["第 2 层 — 入口，节点少，边跨度大"]
+        a2(( )) --- b2(( )) --- c2(( ))
+    end
+
+    subgraph L1 ["第 1 层 — 中等密度"]
+        a1(( )) --- b1(( )) --- c1(( )) --- d1(( )) --- e1(( ))
+        a1 --- d1
+    end
+
+    subgraph L0 ["第 0 层 — 全量 N 个向量，局部稠密图"]
+        a0(( )) --- b0(( )) --- c0(( )) --- d0(( )) --- e0(( )) --- f0(( ))
+        a0 --- c0
+        b0 --- e0
+        c0 --- f0
+    end
+
+    Q -. "① 从顶层进入" .-> a2
+    a2 -. "② 贪心跳向更近的节点" .-> c2
+    c2 -. "③ 下降一层" .-> c1
+    c1 -. "④ 贪心跳向更近的节点" .-> e1
+    e1 -. "⑤ 下降一层" .-> e0
+    e0 -. "⑥ 在稠密图中精细检索" .-> f0
+    f0 --> R(["top-k ✓"])
 ```
 
 你不用自己推导 HNSW。你只需要知道：
