@@ -1,8 +1,8 @@
-# 6. 生态对照
+# 7. 生态对照
 
 工具链让你能搭起一个项目。生态是你在上面真正构建东西用到的部分。这一页把你每天会用的库——HTTP 框架、ORM、校验、HTTP 客户端，再加一份 Docker 配方——映到 TS 里的对应物。这里大多数惊喜是好的：FastAPI 就是"如果 Express 被以 Pydantic 为中心重新设计一遍"的样子。
 
-## 6.1 常用库对照表
+## 7.1 常用库对照表
 
 | 类别 | TypeScript | Python | 备注 |
 |------|-----------|--------|------|
@@ -23,7 +23,7 @@
 | 向量数据库 | — | chromadb / pgvector | |
 | 数据处理 | — | **pandas** / polars | Python 独有优势 |
 
-## 6.2 FastAPI vs Express
+## 7.2 FastAPI vs Express
 
 ```typescript
 // Express (TypeScript)
@@ -89,7 +89,7 @@ async def get_user(user_id: str) -> UserResponse:
 - 原生 async，性能接近 Go
 - 返回值类型注解直接成为响应 schema
 
-## 6.3 Pydantic vs Zod
+## 7.3 Pydantic vs Zod
 
 ```typescript
 // Zod
@@ -138,7 +138,7 @@ user = User.model_validate_json('{"name": "Alice", ...}')
 
 **Pydantic vs Zod 区别**：Pydantic 的 schema 就是 Python class（不需要 `z.infer`），类型定义和校验规则是同一个东西。
 
-## 6.4 SQLAlchemy vs Prisma
+## 7.4 SQLAlchemy vs Prisma
 
 ```typescript
 // Prisma — schema 文件（DSL）
@@ -203,7 +203,7 @@ alembic revision --autogenerate -m "add users table"
 alembic upgrade head
 ```
 
-## 6.5 Docker 打包
+## 7.5 Docker 打包
 
 ```dockerfile
 # TypeScript — 典型 Node Dockerfile

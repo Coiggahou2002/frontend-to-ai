@@ -1,8 +1,8 @@
-# 7. Gotchas & Pitfalls
+# 8. Gotchas & Pitfalls
 
-Ten things that will bite you exactly once each. Skim now, recognize later. The big ones — mutable defaults, the GIL, the lack of block scoping — aren't bugs in your code; they're consequences of how Python differs from Node.js at a level you won't notice until something breaks.
+Nine things that will bite you exactly once each. Skim now, recognize later. The big ones — mutable defaults, the lack of block scoping — aren't bugs in your code; they're consequences of how Python differs from Node.js at a level you won't notice until something breaks. (GIL and concurrency get a dedicated chapter: see Chapter 4.)
 
-## 7.1 Mutable Default Argument Trap
+## 8.1 Mutable Default Argument Trap
 
 This is Python's most infamous gotcha. TS doesn't have this problem.
 
@@ -25,7 +25,7 @@ def add_item(item: str, items: list[str] | None = None) -> list[str]:
 
 **Rule**: Never use mutable objects (list, dict, set) as function default values. Use `None` instead.
 
-## 7.2 `is` vs `==`
+## 8.2 `is` vs `==`
 
 ```python
 # == compares values (similar to JS ===, but doesn't compare types)
@@ -42,7 +42,7 @@ x is True         # check boolean (rare)
 type(x) is int    # check exact type (usually prefer isinstance)
 ```
 
-## 7.3 Pass by Reference
+## 8.3 Pass by Reference
 
 ```python
 # list and dict assignment doesn't copy, just creates a reference (same as JS, but easy to forget)
@@ -60,44 +60,7 @@ import copy
 b = copy.deepcopy(a)    # deep copy (for nested structures)
 ```
 
-## 7.4 GIL & Concurrency
-
-Python's GIL (Global Interpreter Lock) is the most confusing concept for TS developers.
-
-```
-TypeScript (Node.js):
-  Single-threaded + event loop -> naturally no locks needed
-  CPU-intensive -> Worker Threads
-
-Python:
-  Threads exist, but the GIL prevents them from truly running Python code in parallel
-  IO-intensive -> asyncio (similar to Node.js event loop) or threading
-  CPU-intensive -> multiprocessing (multiple processes, bypasses GIL)
-```
-
-```python
-# IO-intensive tasks — use asyncio (closest to the Node.js model)
-import asyncio
-
-async def fetch_all(urls: list[str]) -> list[str]:
-    async with httpx.AsyncClient() as client:
-        tasks = [client.get(url) for url in urls]
-        responses = await asyncio.gather(*tasks)
-        return [r.text for r in responses]
-
-# CPU-intensive tasks — use multiprocessing
-from concurrent.futures import ProcessPoolExecutor
-
-def heavy_compute(data: bytes) -> int:
-    return len(data)  # simulated
-
-with ProcessPoolExecutor() as pool:
-    results = list(pool.map(heavy_compute, chunks))
-```
-
-> Python 3.13 introduced an experimental free-threaded mode (no GIL); this problem will gradually disappear in the future.
-
-## 7.5 No Block Scoping
+## 8.4 No Block Scoping
 
 ```python
 # Python variables "leak" out of if/for blocks (TS/JS let/const don't)
@@ -117,7 +80,7 @@ result = [x for x in range(5)]
 # print(x)  — x here comes from the for loop above, not the comprehension
 ```
 
-## 7.6 Circular Imports
+## 8.5 Circular Imports
 
 ```python
 # a.py
@@ -143,7 +106,7 @@ class B:
 # Solution 2: extract shared types into a third file
 ```
 
-## 7.7 Truthiness Differences
+## 8.6 Truthiness Differences
 
 ```python
 # Python has more falsy values than JS:
@@ -166,7 +129,7 @@ def process(items: list[str] | None = None) -> None:
         items = get_defaults()
 ```
 
-## 7.8 `__init__.py` & Package Discovery
+## 8.7 `__init__.py` & Package Discovery
 
 ```python
 # A directory without __init__.py is not a Python package (in some configurations)
@@ -186,7 +149,7 @@ __all__ = ["User", "Entity", "app"]  # controls * imports
 __version__ = "1.0.0"                # package version
 ```
 
-## 7.9 Integer Division
+## 8.8 Integer Division
 
 ```python
 # Python 3 division differs from JS
@@ -198,7 +161,7 @@ __version__ = "1.0.0"                # package version
 2 ** 100   # 1267650600228229401496703205376 (would overflow in JS)
 ```
 
-## 7.10 Slice Syntax
+## 8.9 Slice Syntax
 
 This is a powerful Python-specific feature that JS/TS doesn't have.
 

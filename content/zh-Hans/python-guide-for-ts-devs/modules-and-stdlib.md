@@ -1,8 +1,8 @@
-# 4. 模块与标准库
+# 5. 模块与标准库
 
 语言层面的最后一捆东西：Python 怎么把代码组织成模块和包、没有 `?.` 和 `??` 怎么办、`match` 语句、装饰器（在 TS 里还是实验性的，在这里是一等公民）、上下文管理器，以及让典型 Python 项目比 TS 项目依赖更少的那个意外丰满的标准库。
 
-## 4.1 模块与导入
+## 5.1 模块与导入
 
 ```typescript
 // TypeScript
@@ -57,7 +57,7 @@ from .utils import helper
 __all__ = ["User", "helper"]  # 控制 `from mypackage import *` 导出什么
 ```
 
-## 4.2 空值处理
+## 5.2 空值处理
 
 ```typescript
 // TypeScript
@@ -87,7 +87,7 @@ if (m := re.match(r"(\d+)", text)) is not None:
 name = getattr(user, "name", "unknown")
 ```
 
-## 4.3 模式匹配
+## 5.3 模式匹配
 
 ```typescript
 // TypeScript — switch
@@ -121,7 +121,7 @@ match command:
         process(first, rest)
 ```
 
-## 4.4 装饰器
+## 5.4 装饰器
 
 TS 装饰器是实验性的，Python 装饰器是**一等公民**，大量使用。
 
@@ -182,7 +182,7 @@ def flaky_call() -> str:
 
 **Python 内置常用装饰器**：`@property`, `@staticmethod`, `@classmethod`, `@dataclass`, `@functools.cache`, `@functools.lru_cache`, `@abstractmethod`
 
-## 4.5 上下文管理器（with 语句）
+## 5.5 上下文管理器（with 语句）
 
 TS 没有对应的语言特性。Python 的 `with` 语句保证资源清理，类似 try/finally 但更优雅。
 
@@ -214,7 +214,7 @@ with timer("query"):
 
 TS 中你通常用 try/finally 或 `using` 声明（Stage 3 提案）来做类似的事。
 
-## 4.6 常用标准库
+## 5.6 常用标准库
 
 Python 的"电池充足"（batteries included）是一大优势。以下是 TS 中需要装第三方包但 Python 内置的功能：
 

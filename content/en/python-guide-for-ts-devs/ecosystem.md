@@ -1,8 +1,8 @@
-# 6. Ecosystem
+# 7. Ecosystem
 
 The toolchain gets you a project. The ecosystem is what you build on top of it. This page maps the libraries you'll actually use day-to-day — HTTP framework, ORM, validation, HTTP client, plus a Docker recipe — to their TS counterparts. Most of the surprises here are pleasant: FastAPI is what Express would look like if it had been redesigned with Pydantic at the center.
 
-## 6.1 Common Library Comparison
+## 7.1 Common Library Comparison
 
 | Category | TypeScript | Python | Notes |
 |----------|-----------|--------|-------|
@@ -23,7 +23,7 @@ The toolchain gets you a project. The ecosystem is what you build on top of it. 
 | Vector database | — | chromadb / pgvector | |
 | Data processing | — | **pandas** / polars | Python's unique advantage |
 
-## 6.2 FastAPI vs Express
+## 7.2 FastAPI vs Express
 
 ```typescript
 // Express (TypeScript)
@@ -89,7 +89,7 @@ async def get_user(user_id: str) -> UserResponse:
 - Native async, performance approaching Go
 - Return type annotations directly become response schemas
 
-## 6.3 Pydantic vs Zod
+## 7.3 Pydantic vs Zod
 
 ```typescript
 // Zod
@@ -138,7 +138,7 @@ user = User.model_validate_json('{"name": "Alice", ...}')
 
 **Pydantic vs Zod difference**: In Pydantic, the schema IS the Python class (no `z.infer` needed) — the type definition and validation rules are the same thing.
 
-## 6.4 SQLAlchemy vs Prisma
+## 7.4 SQLAlchemy vs Prisma
 
 ```typescript
 // Prisma — schema file (DSL)
@@ -203,7 +203,7 @@ alembic revision --autogenerate -m "add users table"
 alembic upgrade head
 ```
 
-## 6.5 Docker Packaging
+## 7.5 Docker Packaging
 
 ```dockerfile
 # TypeScript — typical Node Dockerfile

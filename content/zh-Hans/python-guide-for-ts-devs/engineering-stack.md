@@ -1,8 +1,8 @@
-# 5. 工程化工具链
+# 6. 工程化工具链
 
 语言部分已经讲完了。下一个问题是：怎么把 Python 项目调成跟一个类型化的 TS 项目一样规整：包管理、静态类型检查、运行时校验、lint/format、测试、pre-commit、CI、项目结构。好消息——现代 Python（uv + mypy + pydantic + ruff + pytest + pre-commit）几乎可以 1:1 对应到 pnpm + tsc + zod + eslint + prettier + vitest + husky。
 
-## 5.1 工具栈总览：TS 强类型工程 vs Python 强类型工程
+## 6.1 工具栈总览：TS 强类型工程 vs Python 强类型工程
 
 搭建一个 Python 强类型项目，等价于搭建 TypeScript + pnpm 全家桶：
 
@@ -24,7 +24,7 @@ Python 强类型栈 = uv + mypy + pydantic + ruff + pytest + pre-commit
 
 搭建顺序：`uv init` → 加依赖 → 配 `pyproject.toml`（mypy + ruff + pytest）→ 配 pre-commit → CI。以下各节详细展开。
 
-## 5.2 包管理器
+## 6.2 包管理器
 
 | npm | uv | 备注 |
 |-----|-----|------|
@@ -61,7 +61,7 @@ uv run python -m myproject
 uv run pytest
 ```
 
-## 5.3 依赖声明
+## 6.3 依赖声明
 
 ```jsonc
 // TypeScript — package.json
@@ -118,7 +118,7 @@ line-length = 100
 testpaths = ["tests"]
 ```
 
-## 5.4 虚拟环境
+## 6.4 虚拟环境
 
 TS 的 `node_modules` 是项目级隔离。Python 需要**虚拟环境**做同样的事。
 
@@ -138,7 +138,7 @@ deactivate                      # 退出
 
 **为什么 Python 需要虚拟环境**：Python 全局只有一个 `site-packages`（类似只有一个全局 `node_modules`）。不用虚拟环境，所有项目共享同一套依赖，版本冲突不可避免。
 
-## 5.5 类型检查
+## 6.5 类型检查
 
 ```bash
 # TypeScript
@@ -213,7 +213,7 @@ User(name="Alice", age="abc")  # 运行时抛 ValidationError！
 
 TS 生态里 Zod 是可选的锦上添花，但 Python 生态里 Pydantic 几乎是**必需的**——因为没有编译步骤兜底，运行时类型错误只能靠它拦。
 
-## 5.6 代码格式化与检查
+## 6.6 代码格式化与检查
 
 ```bash
 # TypeScript — 两个工具
@@ -246,7 +246,7 @@ select = [
 ]
 ```
 
-## 5.7 Python 版本管理
+## 6.7 Python 版本管理
 
 ```bash
 # TypeScript 用 nvm 管理 Node 版本
@@ -258,7 +258,7 @@ uv python install 3.12        # 安装 Python 3.12
 uv python pin 3.12             # 项目锁定版本（写入 .python-version）
 ```
 
-## 5.8 测试
+## 6.8 测试
 
 ```typescript
 // TypeScript — vitest
@@ -322,7 +322,7 @@ uv run pytest -k "test_create"    # 按名称过滤
 uv run pytest --cov=my_app       # 覆盖率
 ```
 
-## 5.9 项目结构
+## 6.9 项目结构
 
 ```
 # TypeScript 典型结构
@@ -371,7 +371,7 @@ my-app/
 
 **src layout 的意义**：防止你在项目根目录意外 import 到未安装的本地代码（TS 没这个问题因为 tsc 有明确的编译入口）。
 
-## 5.10 命名规范
+## 6.10 命名规范
 
 | 场景 | TypeScript | Python (PEP 8) |
 |------|-----------|----------------|
@@ -383,7 +383,7 @@ my-app/
 | private | `#field` 或 `_field` | `_field`（约定）/ `__field`（name mangling） |
 | 布尔变量 | `isActive` | `is_active` |
 
-## 5.11 Pre-commit & CI
+## 6.11 Pre-commit & CI
 
 ```yaml
 # .pre-commit-config.yaml（等价于 husky + lint-staged）

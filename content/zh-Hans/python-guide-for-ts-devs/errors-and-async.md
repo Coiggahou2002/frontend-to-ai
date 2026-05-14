@@ -142,4 +142,4 @@ unique_lengths = {len(s) for s in ["hi", "hello", "hey"]}
 
 控制流就这些了。下一页把 Part 1 收尾——剩下的 Python 日常表层：模块、空值处理、模式匹配、装饰器、上下文管理器，以及让你少装一堆 npm 依赖的标准库"电池"。
 
-下一节: [模块与标准库 →](./modules-and-stdlib)
+下一节: [并发模型 →](./concurrency)

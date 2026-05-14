@@ -1,8 +1,8 @@
-# 4. Modules & Standard Library
+# 5. Modules & Standard Library
 
 The last bundle of language-level material: how Python organizes code into modules and packages, what to do without `?.` and `??`, the `match` statement, decorators (a first-class citizen, unlike in TS), context managers, and the surprisingly fat standard library that means a typical Python project pulls in fewer dependencies than a TS one.
 
-## 4.1 Modules & Imports
+## 5.1 Modules & Imports
 
 ```typescript
 // TypeScript
@@ -57,7 +57,7 @@ from .utils import helper
 __all__ = ["User", "helper"]  # controls what `from mypackage import *` exports
 ```
 
-## 4.2 Null Handling
+## 5.2 Null Handling
 
 ```typescript
 // TypeScript
@@ -87,7 +87,7 @@ if (m := re.match(r"(\d+)", text)) is not None:
 name = getattr(user, "name", "unknown")
 ```
 
-## 4.3 Pattern Matching
+## 5.3 Pattern Matching
 
 ```typescript
 // TypeScript — switch
@@ -121,7 +121,7 @@ match command:
         process(first, rest)
 ```
 
-## 4.4 Decorators
+## 5.4 Decorators
 
 TS decorators are experimental; Python decorators are **first-class citizens**, used extensively.
 
@@ -182,7 +182,7 @@ def flaky_call() -> str:
 
 **Common built-in decorators**: `@property`, `@staticmethod`, `@classmethod`, `@dataclass`, `@functools.cache`, `@functools.lru_cache`, `@abstractmethod`
 
-## 4.5 Context Managers (with statement)
+## 5.5 Context Managers (with statement)
 
 TS has no direct equivalent. Python's `with` statement guarantees resource cleanup, similar to try/finally but more elegant.
 
@@ -214,7 +214,7 @@ with timer("query"):
 
 In TS you'd typically use try/finally or the `using` declaration (Stage 3 proposal) for similar behavior.
 
-## 4.6 Useful Standard Library Modules
+## 5.6 Useful Standard Library Modules
 
 Python's "batteries included" philosophy is a major advantage. Here are things that require npm packages in TS but are built into Python:
 

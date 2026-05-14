@@ -1,8 +1,8 @@
-# 5. Engineering Stack
+# 6. Engineering Stack
 
 You've now got the language. The next problem is making a Python project feel as well-engineered as a typed TS project: package management, static type checking, runtime validation, lint/format, tests, pre-commit, CI, project layout. The good news — modern Python (uv + mypy + pydantic + ruff + pytest + pre-commit) maps almost 1:1 onto pnpm + tsc + zod + eslint + prettier + vitest + husky.
 
-## 5.1 Toolchain Overview: TS Strongly-Typed Stack vs Python Strongly-Typed Stack
+## 6.1 Toolchain Overview: TS Strongly-Typed Stack vs Python Strongly-Typed Stack
 
 Setting up a strongly-typed Python project is equivalent to setting up a TypeScript + pnpm full stack:
 
@@ -24,7 +24,7 @@ Python strongly-typed stack = uv + mypy + pydantic + ruff + pytest + pre-commit
 
 Setup order: `uv init` -> add dependencies -> configure `pyproject.toml` (mypy + ruff + pytest) -> configure pre-commit -> CI. The following sections cover each in detail.
 
-## 5.2 Package Manager
+## 6.2 Package Manager
 
 | npm | uv | Notes |
 |-----|-----|-------|
@@ -61,7 +61,7 @@ uv run python -m myproject
 uv run pytest
 ```
 
-## 5.3 Dependency Declaration
+## 6.3 Dependency Declaration
 
 ```jsonc
 // TypeScript — package.json
@@ -118,7 +118,7 @@ line-length = 100
 testpaths = ["tests"]
 ```
 
-## 5.4 Virtual Environments
+## 6.4 Virtual Environments
 
 TS's `node_modules` provides project-level isolation. Python needs **virtual environments** to do the same thing.
 
@@ -138,7 +138,7 @@ deactivate                      # exit
 
 **Why Python needs virtual environments**: Python has only one global `site-packages` (imagine having only one global `node_modules`). Without virtual environments, all projects share the same dependencies — version conflicts are inevitable.
 
-## 5.5 Type Checking
+## 6.5 Type Checking
 
 ```bash
 # TypeScript
@@ -213,7 +213,7 @@ Runtime boundary --> Pydantic   --> validates external input (equivalent to Zod)
 
 In the TS ecosystem, Zod is a nice-to-have. In the Python ecosystem, Pydantic is nearly **essential** — without a compilation step as a safety net, runtime type errors can only be caught by it.
 
-## 5.6 Code Formatting & Linting
+## 6.6 Code Formatting & Linting
 
 ```bash
 # TypeScript — two tools
@@ -246,7 +246,7 @@ select = [
 ]
 ```
 
-## 5.7 Python Version Management
+## 6.7 Python Version Management
 
 ```bash
 # TypeScript uses nvm to manage Node versions
@@ -258,7 +258,7 @@ uv python install 3.12        # install Python 3.12
 uv python pin 3.12             # pin version for project (writes to .python-version)
 ```
 
-## 5.8 Testing
+## 6.8 Testing
 
 ```typescript
 // TypeScript — vitest
@@ -322,7 +322,7 @@ uv run pytest -k "test_create"    # filter by name
 uv run pytest --cov=my_app       # coverage
 ```
 
-## 5.9 Project Structure
+## 6.9 Project Structure
 
 ```
 # Typical TypeScript structure
@@ -371,7 +371,7 @@ my-app/
 
 **Why src layout**: Prevents accidentally importing uninstalled local code from the project root (TS doesn't have this problem because tsc has an explicit compilation entry point).
 
-## 5.10 Naming Conventions
+## 6.10 Naming Conventions
 
 | Context | TypeScript | Python (PEP 8) |
 |---------|-----------|----------------|
@@ -383,7 +383,7 @@ my-app/
 | Private | `#field` or `_field` | `_field` (convention) / `__field` (name mangling) |
 | Booleans | `isActive` | `is_active` |
 
-## 5.11 Pre-commit & CI
+## 6.11 Pre-commit & CI
 
 ```yaml
 # .pre-commit-config.yaml (equivalent to husky + lint-staged)

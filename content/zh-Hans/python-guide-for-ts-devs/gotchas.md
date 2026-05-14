@@ -1,8 +1,8 @@
-# 7. 踩坑指南
+# 8. 踩坑指南
 
-十件会各坑你一次的事。先扫一眼，遇到再认出来。最大的几个——可变默认值、GIL、没有块级作用域——不是你的代码 bug，而是 Python 和 Node.js 在你不会注意到的层面有差别造成的结果。
+九件会各坑你一次的事。先扫一眼，遇到再认出来。最大的几个——可变默认值、没有块级作用域——不是你的代码 bug，而是 Python 和 Node.js 在你不会注意到的层面有差别造成的结果。（GIL 和并发有专门的章节，见第 4 章。）
 
-## 7.1 可变默认参数陷阱
+## 8.1 可变默认参数陷阱
 
 这是 Python 最臭名昭著的坑，TS 不会有这个问题。
 
@@ -25,7 +25,7 @@ def add_item(item: str, items: list[str] | None = None) -> list[str]:
 
 **规则**：永远不要用可变对象（list, dict, set）作为函数默认值。用 `None` 代替。
 
-## 7.2 `is` vs `==`
+## 8.2 `is` vs `==`
 
 ```python
 # == 比较值（类似 JS 的 ===，但不比较类型）
@@ -42,7 +42,7 @@ x is True         # 判断布尔值（罕见）
 type(x) is int    # 判断精确类型（通常用 isinstance 代替）
 ```
 
-## 7.3 引用传递
+## 8.3 引用传递
 
 ```python
 # list 和 dict 赋值不会复制，只是创建引用（JS 也一样，但容易忘）
@@ -60,44 +60,7 @@ import copy
 b = copy.deepcopy(a)    # 深拷贝（嵌套结构）
 ```
 
-## 7.4 GIL 与并发
-
-Python 的 GIL（全局解释器锁）是 TS 开发者最困惑的概念。
-
-```
-TypeScript (Node.js):
-  单线程 + 事件循环 → 天然不需要锁
-  CPU 密集 → Worker Threads
-
-Python:
-  多线程存在，但 GIL 让它们无法真正并行执行 Python 代码
-  IO 密集 → asyncio（类似 Node.js 的事件循环）或 threading
-  CPU 密集 → multiprocessing（多进程，绕过 GIL）
-```
-
-```python
-# IO 密集任务 — 用 asyncio（最接近 Node.js 的模型）
-import asyncio
-
-async def fetch_all(urls: list[str]) -> list[str]:
-    async with httpx.AsyncClient() as client:
-        tasks = [client.get(url) for url in urls]
-        responses = await asyncio.gather(*tasks)
-        return [r.text for r in responses]
-
-# CPU 密集任务 — 用 multiprocessing
-from concurrent.futures import ProcessPoolExecutor
-
-def heavy_compute(data: bytes) -> int:
-    return len(data)  # 模拟
-
-with ProcessPoolExecutor() as pool:
-    results = list(pool.map(heavy_compute, chunks))
-```
-
-> Python 3.13 引入了实验性的 free-threaded 模式（无 GIL），未来这个问题会逐渐消失。
-
-## 7.5 没有块级作用域
+## 8.4 没有块级作用域
 
 ```python
 # Python 变量会"泄漏"出 if/for 块（TS/JS 的 let/const 不会）
@@ -117,7 +80,7 @@ result = [x for x in range(5)]
 # print(x)  — 这里的 x 来自上面的 for 循环，不是推导式里的 x
 ```
 
-## 7.6 循环导入
+## 8.5 循环导入
 
 ```python
 # a.py
@@ -143,7 +106,7 @@ class B:
 # 解决方案 2: 把共享类型提到第三个文件
 ```
 
-## 7.7 Truthiness 差异
+## 8.6 Truthiness 差异
 
 ```python
 # Python 的 falsy 值比 JS 多：
@@ -166,7 +129,7 @@ def process(items: list[str] | None = None) -> None:
         items = get_defaults()
 ```
 
-## 7.8 `__init__.py` 与包发现
+## 8.7 `__init__.py` 与包发现
 
 ```python
 # 没有 __init__.py 的目录不是 Python 包（在某些配置下）
@@ -186,7 +149,7 @@ __all__ = ["User", "Entity", "app"]  # 控制 * 导入
 __version__ = "1.0.0"                # 包版本
 ```
 
-## 7.9 整数除法
+## 8.8 整数除法
 
 ```python
 # Python 3 的除法和 JS 不同
@@ -198,7 +161,7 @@ __version__ = "1.0.0"                # 包版本
 2 ** 100   # 1267650600228229401496703205376（JS 中会溢出）
 ```
 
-## 7.10 切片语法
+## 8.9 切片语法
 
 这是 Python 独有的强大特性，JS/TS 没有。
 

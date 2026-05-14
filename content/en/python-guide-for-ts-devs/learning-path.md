@@ -1,4 +1,4 @@
-# 8. Learning Path
+# 9. Learning Path
 
 A four-week plan for going from "I read this guide" to "I can ship a typed Python service." Each week is a deliberate slice — language, tooling, web stack, async/prod — so you build the same kind of mental model you have for TS, in roughly the same order you originally built the TS one.
 

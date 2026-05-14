@@ -142,4 +142,4 @@ unique_lengths = {len(s) for s in ["hi", "hello", "hey"]}
 
 That covers control flow. Next we wrap up Part 1 with the rest of Python's everyday surface — modules, null handling, pattern matching, decorators, context managers, and the standard library "batteries" that mean fewer npm dependencies.
 
-Next: [Modules & Standard Library →](./modules-and-stdlib)
+Next: [Concurrency →](./concurrency)
