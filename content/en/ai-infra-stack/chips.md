@@ -20,13 +20,18 @@ GPUs (Graphics Processing Units) were originally designed for rendering game gra
 
 NVIDIA's GPU ecosystem (CUDA + cuDNN + NCCL) holds a near-monopoly in AI. Common GPU models:
 
-| Model | VRAM | Use Case |
-|-------|------|----------|
-| A100 | 40/80 GB | Training + inference (previous-gen flagship) |
-| H100 | 80 GB | Current training flagship |
-| H200 | 141 GB | Large-VRAM inference optimization |
-| L4 | 24 GB | Cost-effective inference card |
-| RTX 4090 | 24 GB | Best consumer-grade GPU (personal dev / small-scale inference) |
+| Model | VRAM | FP16 Compute | Use Case |
+|-------|------|--------------|----------|
+| T4 | 16 GB | 65 TFLOPS | Cost-optimised inference (common legacy cloud instance) |
+| V100 | 16 / 32 GB | 112 TFLOPS | Training (two gens back, high historical availability) |
+| L4 | 24 GB | 121 TFLOPS | Efficient inference, very low power (72 W) |
+| RTX 4090 | 24 GB | 165 TFLOPS | Consumer flagship, personal dev / small-scale fine-tuning |
+| L20 | 48 GB | ~181 TFLOPS | Inference, double the VRAM of L4 |
+| A100 | 40 / 80 GB | 312 TFLOPS | Training + inference (previous-gen flagship) |
+| H100 | 80 GB | 989 TFLOPS | Current training flagship |
+| H200 | 141 GB | 989 TFLOPS | H100 compute + HBM3e memory, inference-first |
+| B200 | 192 GB | ~2,250 TFLOPS | Blackwell flagship, next-gen training standard |
+| B300 | 288 GB | > 4,000 TFLOPS | Blackwell Ultra, extreme-scale training |
 
 ## TPU — Google's Dedicated AI Chip
 
