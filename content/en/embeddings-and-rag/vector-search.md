@@ -23,34 +23,7 @@ Vector databases solve this with **Approximate Nearest Neighbor** indexes — da
 
 Intuition: HNSW is a **skip-list of graphs**. The bottom layer connects every vector to its neighbors. Higher layers contain progressively fewer vectors with longer-range edges. A query enters at the top, greedily hops toward closer neighbors, drops down a layer, hops some more, and so on until it can't improve. Search is `O(log N)` instead of `O(N)`.
 
-```mermaid
-graph TB
-    Q(["★ Query"])
-
-    subgraph L2 ["Layer 2 — entry point, sparse long-range edges"]
-        a2(( )) --- b2(( )) --- c2(( ))
-    end
-
-    subgraph L1 ["Layer 1 — medium density"]
-        a1(( )) --- b1(( )) --- c1(( )) --- d1(( )) --- e1(( ))
-        a1 --- d1
-    end
-
-    subgraph L0 ["Layer 0 — all N vectors, dense local graph"]
-        a0(( )) --- b0(( )) --- c0(( )) --- d0(( )) --- e0(( )) --- f0(( ))
-        a0 --- c0
-        b0 --- e0
-        c0 --- f0
-    end
-
-    Q -. "① enter at top" .-> a2
-    a2 -. "② greedy hop" .-> c2
-    c2 -. "③ descend" .-> c1
-    c1 -. "④ greedy hop" .-> e1
-    e1 -. "⑤ descend" .-> e0
-    e0 -. "⑥ refine in dense graph" .-> f0
-    f0 --> R(["top-k ✓"])
-```
+![HNSW layered graph structure and search path](/frontend-to-ai/images/hnsw-structure.png)
 
 You don't need to derive HNSW. You only need to know:
 
