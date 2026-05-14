@@ -23,7 +23,7 @@ def brute_force_topk(query: np.ndarray, corpus: np.ndarray, k: int) -> list[int]
 
 直觉：HNSW 是一个**图的跳表**。最底层把每个向量连到它的邻居。越往上层向量越少，但边的跨度更大。一个 query 从顶层进入，贪心地跳向更近的邻居，掉一层，再跳几次，如此反复直到无法再改进。检索是 `O(log N)`，不是 `O(N)`。
 
-<img src="/frontend-to-ai/images/hnsw-structure.png" alt="HNSW 层级图结构与检索路径" style={{width:'100%'}} />
+![HNSW 层级图结构与检索路径](/images/hnsw-structure.png)
 
 你不用自己推导 HNSW。你只需要知道：
 

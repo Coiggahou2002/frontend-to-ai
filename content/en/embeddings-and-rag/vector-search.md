@@ -23,7 +23,7 @@ Vector databases solve this with **Approximate Nearest Neighbor** indexes — da
 
 Intuition: HNSW is a **skip-list of graphs**. The bottom layer connects every vector to its neighbors. Higher layers contain progressively fewer vectors with longer-range edges. A query enters at the top, greedily hops toward closer neighbors, drops down a layer, hops some more, and so on until it can't improve. Search is `O(log N)` instead of `O(N)`.
 
-<img src="/frontend-to-ai/images/hnsw-structure.png" alt="HNSW layered graph structure and search path" style={{width:'100%'}} />
+![HNSW layered graph structure and search path](/images/hnsw-structure.png)
 
 You don't need to derive HNSW. You only need to know:
 
