@@ -170,6 +170,6 @@ Agents have the perfect shape for prompt caching: a long, stable prefix (system 
 
 For a 15-iteration agent run with an 80K-token transcript at the end, the un-cached cost is dominated by re-prefilling that 80K every turn. With caching, the marginal cost per iteration is roughly the new tool_result + the new model output — orders of magnitude cheaper.
 
-[Chapter 7](../kv-cache) covers the KV cache mechanics that make this possible. The takeaway here: **agent runs are where prefix caching ROI is biggest.** Bigger than RAG, bigger than long-context Q&A. If you skip caching on agents, you are paying for every long-prefix prefill yourself.
+[Chapter 9](../kv-cache) covers the KV cache mechanics that make this possible. The takeaway here: **agent runs are where prefix caching ROI is biggest.** Bigger than RAG, bigger than long-context Q&A. If you skip caching on agents, you are paying for every long-prefix prefill yourself.
 
 Next: [Safety & Budgets →](./safety-budgets)

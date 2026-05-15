@@ -65,4 +65,4 @@ The proposal should include: chosen post-training methods, data requirements, tr
 
 That closes the post-training story. The next chapter zooms out to evaluation and observability across the whole LLM application stack -- not just the training run.
 
-Next: [Chapter 11: Evaluation & Observability](../evaluation)
+Next: [Chapter 13: Evaluation & Observability](../evaluation)

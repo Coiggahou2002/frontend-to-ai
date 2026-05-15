@@ -42,7 +42,7 @@ Framework / KV cache / scratch:            ~1-2 GB
 Total:                                     ~10-12 GB    ← fits comfortably
 ```
 
-[第 5 章](../gpu-and-model-sizing) 有更宽的内存数学；3B 模型走 4-bit 还有大把余量。如果你试 7B + QLoRA 会比较紧（~14GB）但仍能塞下。
+[第 7 章](../gpu-and-model-sizing) 有更宽的内存数学；3B 模型走 4-bit 还有大把余量。如果你试 7B + QLoRA 会比较紧（~14GB）但仍能塞下。
 
 ## CELL 1——安装依赖
 
@@ -88,7 +88,7 @@ print(f"Loaded {BASE_MODEL} in 4-bit.")
 两个要盯紧的地方：
 
 - **bf16 vs fp16。** T4 是 Ampere 之前的卡，没有 bf16 硬件。所有地方都用 fp16。更新的 GPU（A100、RTX 30/40 系列、H100）支持 bf16，应该优先用——动态范围更宽，训练时 NaN 更少。如果换 GPU，记得 `bnb_4bit_compute_dtype` 和 trainer 参数要一起改。
-- **`use_cache = False`。** KV cache（第 7 章）是给推理用的。训练时和 gradient checkpointing 冲突；这里关掉，保存之后再开回来。
+- **`use_cache = False`。** KV cache（第 9 章）是给推理用的。训练时和 gradient checkpointing 冲突；这里关掉，保存之后再开回来。
 
 ## CELL 3——挂上 LoRA adapter
 

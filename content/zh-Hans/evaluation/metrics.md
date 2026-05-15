@@ -97,7 +97,7 @@ LLM-judge 适用于：
 | Agent 任务完成             | 程序化的结果检查                      | 轨迹 rubric（judge）                   | 见 [第 4 章 §8](../agents-and-orchestration/evaluating-agents)。|
 | 工具调用参数抽取           | 关键参数上的工具调用 exact match      | 工具调用次数                           | 只用程序化。                                    |
 | 拒答校准                   | 对抗切片+良性切片上的拒答率           | 两者都要看                             | 误拒（false-positive refusal）是真 bug。        |
-| 微调对比                   | 同一套指标，跑在 held-out 集合上      | 对 base 模型的胜率（pairwise judge）   | 见 [第 9 章](../fine-tuning)。                  |
+| 微调对比                   | 同一套指标，跑在 held-out 集合上      | 对 base 模型的胜率（pairwise judge）   | 见 [第 11 章](../fine-tuning)。                  |
 
 不同行之间有重叠，重叠就是重点。**搭多个轻量级指标，不要只搭一个重量级指标。**它们彼此相关但在边界处会分歧，bug 就藏在边界里。
 

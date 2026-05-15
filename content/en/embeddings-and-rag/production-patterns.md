@@ -83,7 +83,7 @@ resp = llm.messages.create(
 )
 ```
 
-The KV cache mechanics that make this possible are covered in **Chapter 7**. The point here: design your prompts so the stable prefix is *actually stable*. If you concatenate timestamps, request IDs, or chunk text into the system prompt, you've broken caching for nothing.
+The KV cache mechanics that make this possible are covered in **Chapter 9**. The point here: design your prompts so the stable prefix is *actually stable*. If you concatenate timestamps, request IDs, or chunk text into the system prompt, you've broken caching for nothing.
 
 ## 5. Knobs you'll actually tune — in order of impact
 

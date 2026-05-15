@@ -91,7 +91,7 @@ triage = TicketTriage.model_validate(tool_use_block.input)
 
 ## 自部署的等价物
 
-如果你在 vLLM 或 SGLang 上服务开源模型，你也有一等公民级的结构化输出——可以用 **outlines** 或 **lm-format-enforcer** 这样的库，或者 vLLM 内置的 `guided_json` 参数。这些库做的事情和闭源 API 提供商内部做的是一样的：在解码的每一步，把会破坏 schema 的 token 屏蔽掉。推理服务这一侧的事情第 6 章会讲一些。
+如果你在 vLLM 或 SGLang 上服务开源模型，你也有一等公民级的结构化输出——可以用 **outlines** 或 **lm-format-enforcer** 这样的库，或者 vLLM 内置的 `guided_json` 参数。这些库做的事情和闭源 API 提供商内部做的是一样的：在解码的每一步，把会破坏 schema 的 token 屏蔽掉。推理服务这一侧的事情第 8 章会讲一些。
 
 ## 为什么这件事在本章之外也很重要
 

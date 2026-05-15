@@ -48,7 +48,7 @@ Often more diagnostic than success rate alone. An agent can solve the task but t
 - **Tool-call count.** How many calls before resolution?
 - **Redundant-call rate.** How many calls were near-duplicates (same tool, near-identical args)? Rising = oscillation drift.
 - **Tool diversity.** Distinct tools used / total tool calls. Low diversity on tasks that should need multiple tools = the agent missed a step.
-- **Average iteration cost.** Per-iteration token spend, normalized for transcript length. Spikes mean prefix caching ([Chapter 7](../kv-cache)) regressed or the transcript blew up.
+- **Average iteration cost.** Per-iteration token spend, normalized for transcript length. Spikes mean prefix caching ([Chapter 9](../kv-cache)) regressed or the transcript blew up.
 - **First-iteration tool match rate.** Did the agent call the *right* tool first? Direct measure of tool-description quality ([§2 rule 1](./tool-design)).
 
 Track each metric per (case, agent_version). Regressions on any of them point at distinct things, which is the whole reason you split them out:
@@ -123,10 +123,10 @@ Two practical disciplines:
 
 Eval isn't just for "is the agent good" — it's the only mechanism that lets you change anything safely. Without it, every prompt edit is a roll of the dice.
 
-## Forward link: Chapter 11
+## Forward link: Chapter 13
 
-Agent eval is a special case of LLM eval. The same disciplines (labeled sets, judge calibration, regression tracking, distribution-level metrics over equality assertions) apply to chat completions, RAG, classifiers, and everything else that produces non-deterministic outputs. **Chapter 11 (Evaluation and Observability)** goes much deeper: golden sets, A/B testing, online vs. offline eval, drift detection, and how to operationalize all of this on a real engineering team.
+Agent eval is a special case of LLM eval. The same disciplines (labeled sets, judge calibration, regression tracking, distribution-level metrics over equality assertions) apply to chat completions, RAG, classifiers, and everything else that produces non-deterministic outputs. **Chapter 13 (Evaluation and Observability)** goes much deeper: golden sets, A/B testing, online vs. offline eval, drift detection, and how to operationalize all of this on a real engineering team.
 
 ---
 
-Next, the hardware reality for self-hosting any of this — [Chapter 5](../gpu-and-model-sizing).
+Next, the data layer that makes all of this persistent — [Chapter 5](../backend-and-data).

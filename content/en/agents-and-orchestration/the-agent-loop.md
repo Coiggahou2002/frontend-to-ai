@@ -222,7 +222,7 @@ The loop returns. Two model calls, two tool executions, one final answer. That's
 What the loop does **not** handle yet:
 - Cost ceilings, wall-time ceilings, oscillation detection — [§6](./safety-budgets).
 - Streaming output — [Chapter 2 §7](../llm-apis-and-prompts/streaming).
-- Prompt caching for the (stable) tools + system prompt — [Chapter 2 §8](../llm-apis-and-prompts/cost-and-latency). On long agent runs this matters more than for any other workload, because the prompt grows monotonically and the early portion is reprocessed every iteration ([Chapter 7](../kv-cache) goes deep on why).
+- Prompt caching for the (stable) tools + system prompt — [Chapter 2 §8](../llm-apis-and-prompts/cost-and-latency). On long agent runs this matters more than for any other workload, because the prompt grows monotonically and the early portion is reprocessed every iteration ([Chapter 9](../kv-cache) goes deep on why).
 
 Everything from here is engineering on top of these ~100 lines.
 

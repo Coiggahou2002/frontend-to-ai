@@ -12,7 +12,7 @@ This is the awkward reality of pre-trained models -- they learn the statistical 
 
 Post-training is not a nice-to-have. It's a systematic engineering process that turns "raw capability" into "usable product," encompassing Supervised Fine-Tuning, Preference Optimization, Capability Enhancement, and Safety Alignment. Once you understand this system, you'll see why the same base model can produce wildly different results depending on who trains it.
 
-This is the theoretical companion to [Chapter 9: Fine-Tuning in Practice](../fine-tuning). That chapter shows you how to run a LoRA / QLoRA fine-tune on a single GPU. This one explains *why* the algorithms exist -- SFT, RLHF, DPO, GRPO -- and how to choose between them.
+This is the theoretical companion to [Chapter 11: Fine-Tuning in Practice](../fine-tuning). That chapter shows you how to run a LoRA / QLoRA fine-tune on a single GPU. This one explains *why* the algorithms exist -- SFT, RLHF, DPO, GRPO -- and how to choose between them.
 
 ## What's in this chapter
 

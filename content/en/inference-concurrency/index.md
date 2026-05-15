@@ -1,6 +1,6 @@
 # Inference Concurrency: Theory, Methods, and Practice
 
-[Chapter 7](../kv-cache) was about *one* request — where the KV cache lives, how it grows, and why decode is bandwidth-bound. This chapter answers the obvious next question: **how many requests can a single GPU box handle at once, and how do you predict that number before you provision?**
+[Chapter 9](../kv-cache) was about *one* request — where the KV cache lives, how it grows, and why decode is bandwidth-bound. This chapter answers the obvious next question: **how many requests can a single GPU box handle at once, and how do you predict that number before you provision?**
 
 The short version: concurrency is an inverse function. Given fixed hardware and a fixed model, the maximum number of simultaneous requests scales as `K / X`, where `X` is the average tokens per request and `K` is a constant determined by VRAM and architecture. Everything in this chapter is about computing `K` precisely enough to size a deployment.
 
@@ -21,6 +21,6 @@ The short version: concurrency is an inverse function. Given fixed hardware and 
 5. [vLLM Tuning Parameters](./vllm-tuning-parameters) — the three flags that matter, before/after numbers, and the rest of the knobs.
 6. [Quick Estimation Checklist](./quick-checklist) — the six-step recipe to keep next to your terminal.
 
-This chapter assumes you've internalized the per-token KV cache formula from [Chapter 7](../kv-cache); we'll build on it directly. The next chapter, [Fine-Tuning in Practice](../fine-tuning), uses these same numbers — concurrency math is what tells you whether your fine-tuned model can actually serve traffic on the hardware you have.
+This chapter assumes you've internalized the per-token KV cache formula from [Chapter 9](../kv-cache); we'll build on it directly. The next chapter, [Fine-Tuning in Practice](../fine-tuning), uses these same numbers — concurrency math is what tells you whether your fine-tuned model can actually serve traffic on the hardware you have.
 
 Next: [Prefill and Decode](./prefill-and-decode)

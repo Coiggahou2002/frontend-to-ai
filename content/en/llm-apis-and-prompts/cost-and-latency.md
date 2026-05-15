@@ -9,7 +9,7 @@ Most providers charge ~3–5x more per output token than per input token. The re
 - **Input tokens go through the prefill phase.** All N input tokens are processed in one parallel forward pass. The GPU is fed a long matrix and chews through it efficiently.
 - **Output tokens come from the decode phase.** Each output token requires its own full forward pass through the model. Generate 500 tokens, that's 500 sequential forward passes. You can't parallelize them across the same request because each token depends on the previous one (autoregressive — Chapter 0 §2).
 
-So output is not just "the same work, charged more." It's actually more compute per token. The KV cache (Chapter 7) is what keeps decode tractable — without it, each new token would also have to recompute attention against all prior tokens. With it, decode becomes a steady drumbeat: one matmul per token, KV cache grows by one entry, repeat. **Chapters 7 and 8** explain the mechanics in depth.
+So output is not just "the same work, charged more." It's actually more compute per token. The KV cache (Chapter 9) is what keeps decode tractable — without it, each new token would also have to recompute attention against all prior tokens. With it, decode becomes a steady drumbeat: one matmul per token, KV cache grows by one entry, repeat. **Chapters 9 and 10** explain the mechanics in depth.
 
 ## Approximate 2026 Pricing
 
@@ -25,7 +25,7 @@ Mid- to top-tier model from each major provider. USD per million tokens. Numbers
 | Gemini 2.5 Flash (Google) | $0.30 | $1.20 | $0.075 | Very cheap, very fast |
 | Llama 3.3 70B on Together | $0.88 | $0.88 | — | Open model, hosted; flat rate |
 
-**Prompt caching** appears across providers in different forms (Anthropic's explicit cache markers, OpenAI's automatic prefix matching, Gemini's context caching). All of them dramatically reduce cost for chat sessions, RAG with stable system prompts, and few-shot pipelines — anywhere a long prefix is reused. The deep mechanics are in **Chapter 7's prefix caching section**. For now, just know it exists and that cache discounts of 50–90% on input tokens are real.
+**Prompt caching** appears across providers in different forms (Anthropic's explicit cache markers, OpenAI's automatic prefix matching, Gemini's context caching). All of them dramatically reduce cost for chat sessions, RAG with stable system prompts, and few-shot pipelines — anywhere a long prefix is reused. The deep mechanics are in **Chapter 9's prefix caching section**. For now, just know it exists and that cache discounts of 50–90% on input tokens are real.
 
 ## Quick Math: One RAG Chat Turn
 

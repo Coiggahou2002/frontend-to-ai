@@ -37,7 +37,7 @@ Every chapter in this guide builds on this loop:
 - **Chapter 4 (Agents and Tool Use)** is about giving the model a way to interact with the outside world by structuring some of its tokens as function calls — still a single forward pass, but the output is interpreted as tool invocations.
 - **Chapters 5–8 (GPU sizing, infra stack, KV cache, inference concurrency)** are the hardware and serving side of the loop — what it costs to run the model, how the KV cache lets the server skip recomputation, how concurrent requests share GPU memory.
 - **Chapters 9–10 (Fine-tuning and Post-training)** are about *changing* the model's learned distribution — making it better at your specific task, or shaping its behavior with reinforcement learning.
-- **Chapter 11 (Evaluation)** is about measuring whether any of this is actually working, given the non-determinism.
+- **Chapter 13 (Evaluation)** is about measuring whether any of this is actually working, given the non-determinism.
 
 Now you understand the machine. The next chapter teaches you the language to operate it.
 

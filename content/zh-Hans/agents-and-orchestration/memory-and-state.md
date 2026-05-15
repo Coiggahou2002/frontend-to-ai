@@ -170,6 +170,6 @@ Agent 有 prompt caching 完美的形状：一段长且稳定的前缀（system 
 
 一个跑 15 轮、最后对话记录有 80K token 的 agent 运行，没缓存的成本主要被每轮重新 prefill 那 80K 主导。开了缓存之后，每轮迭代的边际成本大致就是新的 tool_result 加上新的模型输出——便宜了几个数量级。
 
-[第 7 章](../kv-cache) 讲让这件事成为可能的 KV cache 机制。这里的要点：**agent 运行是 prefix caching 投资回报率最高的场景。** 比 RAG 高，比长上下文 Q&A 高。如果你在 agent 上不开缓存，每一次长前缀 prefill 都是你自己掏钱。
+[第 9 章](../kv-cache) 讲让这件事成为可能的 KV cache 机制。这里的要点：**agent 运行是 prefix caching 投资回报率最高的场景。** 比 RAG 高，比长上下文 Q&A 高。如果你在 agent 上不开缓存，每一次长前缀 prefill 都是你自己掏钱。
 
 下一节: [安全与预算 →](./safety-budgets)

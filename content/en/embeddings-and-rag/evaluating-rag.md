@@ -154,6 +154,6 @@ When any of these regress, you have a clear diagnosis: retrieval problem (recall
 
 ## Forward reference
 
-Everything in this section is an instance of a more general discipline. **Chapter 11 (Evaluation and Observability)** treats LLM evaluation as a first-class topic — distributions over outputs, judge-model calibration, regression tracking, online vs. offline eval. RAG is the easiest place to start because the failure surfaces are well-defined and the metrics are concrete; once you have a golden set for retrieval, you're 80% of the way to having one for everything else.
+Everything in this section is an instance of a more general discipline. **Chapter 13 (Evaluation and Observability)** treats LLM evaluation as a first-class topic — distributions over outputs, judge-model calibration, regression tracking, online vs. offline eval. RAG is the easiest place to start because the failure surfaces are well-defined and the metrics are concrete; once you have a golden set for retrieval, you're 80% of the way to having one for everything else.
 
 Next: [Production Patterns →](./production-patterns)

@@ -12,7 +12,7 @@ You can run a fine-tune end to end and still ship a broken model. Most fine-tune
 - Lower the learning rate (try halving it).
 - Train for fewer epochs. For most SFT tasks, 1–3 epochs is plenty; 10+ is asking for forgetting.
 - Reduce LoRA `r` (less capacity to overwrite).
-- **Mix in general-purpose data** — even 10–20% generic instruction data interspersed with your task data preserves general behavior. ([Chapter 10 §2](../post-training) covers this as PPO-ptx.)
+- **Mix in general-purpose data** — even 10–20% generic instruction data interspersed with your task data preserves general behavior. ([Chapter 12 §2](../post-training) covers this as PPO-ptx.)
 - Always run a "general capability" eval set against both the base and the fine-tune before shipping ([§5](./evaluating-the-finetune)).
 
 ## 2. Chat-template mismatch
@@ -92,7 +92,7 @@ For real protection: **eval set is human-curated and never shares a source with 
 - A few "things v1 was bad at" prompts so you can see if those got fixed.
 - Prompts you've personally seen go wrong in production.
 
-Treat the regression set like a CI test suite. If you change the regression set, version it (`v1`, `v2`, ...) and never run new fine-tunes against an old version's set without explicit acknowledgment. [Chapter 11](../evaluation) covers eval discipline at the level a real product needs.
+Treat the regression set like a CI test suite. If you change the regression set, version it (`v1`, `v2`, ...) and never run new fine-tunes against an old version's set without explicit acknowledgment. [Chapter 13](../evaluation) covers eval discipline at the level a real product needs.
 
 ## 7. Refusal-policy regressions
 
@@ -126,4 +126,4 @@ The temptation when you're heads-down on a fine-tune is to skip eval and ship. T
 
 You now have the engineering pieces: when to fine-tune, how LoRA / QLoRA work mechanically, how to prepare data, how to run the training loop on cheap hardware, how to evaluate the result, how to serve it, and the eight pitfalls. Same code with different model + bigger GPU scales linearly.
 
-Next, the theory of how this all works under the hood — [Chapter 10](../post-training).
+Next, the theory of how this all works under the hood — [Chapter 12](../post-training).

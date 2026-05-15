@@ -61,7 +61,7 @@ A common confusion. Fine-tuning and RAG solve different problems.
 
 A simple rule: **fine-tune for behavior, RAG for knowledge**. If you want the model to always answer in legal-memo format, fine-tune. If you want it to answer questions about your 50,000 legal memos, RAG. Most production systems do both — a lightly fine-tuned model that consumes RAG context.
 
-Fine-tuning bakes knowledge in lossily — the model "remembers" the corpus but can't cite it, and you can't update one fact without re-training. We cover fine-tuning end-to-end in **Chapter 9**.
+Fine-tuning bakes knowledge in lossily — the model "remembers" the corpus but can't cite it, and you can't update one fact without re-training. We cover fine-tuning end-to-end in **Chapter 11**.
 
 ## The name
 

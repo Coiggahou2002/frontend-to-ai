@@ -78,6 +78,6 @@ This breaks the testing playbook you're used to:
 
 You need different evaluation techniques: scoring outputs against rubrics, running the same prompt many times and measuring distribution-level properties (rate of correct answers, rate of refusals, average output length), using a separate "judge" LLM to grade outputs, and accepting that you measure **regression rates**, not equality.
 
-This is the core challenge of LLM evaluation, and it gets a chapter of its own — **Chapter 11 (Evaluation and Observability)**. The short version: stop thinking like a unit test author and start thinking like a stats-aware QA engineer. Distributions, not values.
+This is the core challenge of LLM evaluation, and it gets a chapter of its own — **Chapter 13 (Evaluation and Observability)**. The short version: stop thinking like a unit test author and start thinking like a stats-aware QA engineer. Distributions, not values.
 
 Next: [Putting It Together →](./putting-it-together)

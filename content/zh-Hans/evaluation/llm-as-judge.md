@@ -89,7 +89,7 @@ class PairwiseVerdict(BaseModel):
 
 Pairwise **比绝对评分更可靠**。人比起"这个 1-5 分多少分"更擅长"哪个更好"——judge 也继承了同样的特性。Pairwise 用于：
 
-- A/B 风格的对比（新 prompt vs. 旧 prompt、新模型 vs. 旧模型、微调 vs. base——[第 9 章](../fine-tuning)）。
+- A/B 风格的对比（新 prompt vs. 旧 prompt、新模型 vs. 旧模型、微调 vs. base——[第 11 章](../fine-tuning)）。
 - 把胜率作为头部指标（"新 prompt 在对老 prompt 的 pairwise 比较中胜出 64%"）。
 
 缺点：位置偏置很严重（见下文）。永远跑两种顺序。

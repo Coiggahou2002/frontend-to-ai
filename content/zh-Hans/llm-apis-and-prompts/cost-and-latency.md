@@ -9,7 +9,7 @@
 - **输入 token 走 prefill 阶段。** 全部 N 个输入 token 在一次并行的前向传播中处理完。GPU 拿到一长条矩阵，啃得很快。
 - **输出 token 来自 decode 阶段。** 每一个输出 token 都要经过自己一次完整的前向传播。生成 500 个 token，就是 500 次顺序的前向传播。同一条请求里这些 token 没法并行，因为每个 token 都依赖前一个（自回归——第 0 章 §2）。
 
-所以输出不只是"同样的工作，收费更高"。它本身就是每 token 更多的算力。KV cache（第 7 章）是让 decode 还能跑得动的关键——没有它，每个新 token 还得对之前所有 token 重新算一遍 attention。有了它，decode 就变成稳稳的鼓点：每个 token 一次 matmul，KV cache 多一项，循环。**第 7 章和第 8 章**会把机制讲透。
+所以输出不只是"同样的工作，收费更高"。它本身就是每 token 更多的算力。KV cache（第 9 章）是让 decode 还能跑得动的关键——没有它，每个新 token 还得对之前所有 token 重新算一遍 attention。有了它，decode 就变成稳稳的鼓点：每个 token 一次 matmul，KV cache 多一项，循环。**第 9 章和第 10 章**会把机制讲透。
 
 ## 2026 年的近似定价
 
@@ -25,7 +25,7 @@
 | Gemini 2.5 Flash（Google） | $0.30 | $1.20 | $0.075 | 非常便宜，非常快 |
 | Llama 3.3 70B on Together | $0.88 | $0.88 | — | 开源模型，托管；统一价 |
 
-**Prompt caching** 在各家以不同形式出现（Anthropic 的显式 cache 标记、OpenAI 的自动前缀匹配、Gemini 的上下文缓存）。它们都能显著降低聊天会话、带稳定 system prompt 的 RAG、以及 few-shot 流水线的成本——任何长前缀被复用的场景都受益。深入机制在**第 7 章的前缀缓存一节**。眼下你只要知道它存在，并且对输入 token 5 折到 9 折的缓存折扣是真实的。
+**Prompt caching** 在各家以不同形式出现（Anthropic 的显式 cache 标记、OpenAI 的自动前缀匹配、Gemini 的上下文缓存）。它们都能显著降低聊天会话、带稳定 system prompt 的 RAG、以及 few-shot 流水线的成本——任何长前缀被复用的场景都受益。深入机制在**第 9 章的前缀缓存一节**。眼下你只要知道它存在，并且对输入 token 5 折到 9 折的缓存折扣是真实的。
 
 ## 速算：一轮 RAG 聊天
 

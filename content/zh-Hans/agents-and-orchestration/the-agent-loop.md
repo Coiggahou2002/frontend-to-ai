@@ -222,7 +222,7 @@ resp.stop_reason = "end_turn"
 循环目前**还没有**处理的事：
 - 成本上限、wall-time 上限、震荡检测——见 [§6](./safety-budgets)。
 - 流式输出——见 [第 2 章 §7](../llm-apis-and-prompts/streaming)。
-- 给（稳定的）工具列表 + 系统提示词加上 prompt caching——见 [第 2 章 §8](../llm-apis-and-prompts/cost-and-latency)。在长 Agent 运行里，prompt caching 比在任何其他场景都更要紧，因为 prompt 是单调增长的，每轮迭代都要重新处理前面那一大段（[第 7 章](../kv-cache) 会深入讲为什么）。
+- 给（稳定的）工具列表 + 系统提示词加上 prompt caching——见 [第 2 章 §8](../llm-apis-and-prompts/cost-and-latency)。在长 Agent 运行里，prompt caching 比在任何其他场景都更要紧，因为 prompt 是单调增长的，每轮迭代都要重新处理前面那一大段（[第 9 章](../kv-cache) 会深入讲为什么）。
 
 从这里往后所有内容，都是叠在这 ~100 行之上的工程。
 

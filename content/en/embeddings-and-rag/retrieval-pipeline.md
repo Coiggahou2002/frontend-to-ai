@@ -241,6 +241,6 @@ resp = llm.messages.create(
 )
 ```
 
-The KV cache that makes this work is covered in **Chapter 7**.
+The KV cache that makes this work is covered in **Chapter 9**.
 
 Next: [Reranking & Hybrid Search →](./reranking-and-hybrid)

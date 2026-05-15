@@ -149,7 +149,7 @@ flowchart LR
 
 ## 微调走的是同一个循环
 
-微调（[第 9 章](../fine-tuning)）就接到这同一个飞轮上：
+微调（[第 11 章](../fine-tuning)）就接到这同一个飞轮上：
 
 - 离线：拿微调后的模型跑 golden set，对 base 模型 diff。如果它在关键切片上回归了，哪怕平均分上升也要拒绝它。（一个帮了一个切片、坑了另一个切片的 tune，常常*比* base *更差*。）
 - Shadow：把真实流量 shadow 给微调模型。对 base 跑 pairwise judge。胜率 < 55% 就不值这次微调的钱。

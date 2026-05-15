@@ -60,20 +60,20 @@ Prompt 注入是 LLM 时代相当于 2005 年 SQL 注入的那个东西——一
 
 模型拒绝回答。有时候这是对的——用户确实在求一个有害的东西。有时候是误判：模型把一个无害的医学问题理解成"它不该给的建议"，或者把一段虚构的暴力 prompt 当成真实威胁。
 
-为什么会发生：后训练（第 10 章）用人类反馈或奖励模型塑造模型行为。训练把它推向拒绝某类内容。和任何分类器一样，它有假阳性率和假阴性率。
+为什么会发生：后训练（第 12 章）用人类反馈或奖励模型塑造模型行为。训练把它推向拒绝某类内容。和任何分类器一样，它有假阳性率和假阴性率。
 
 缓解手段：
 
 1. **改写（Rephrase）** —— 给问题加上能消歧意图的上下文（"为了一节安全培训课……"）。有时候管用，有时候像在求情。
 2. **换模型** —— 各家提供商对拒答阈值的调校不一样。对一些合法但边缘的用例（安全研究、医学、法律建议），一个模型行得通而另一个不行。
-3. **微调**（第 9 章） —— 对一个有自己定义良好的安全策略的企业部署，微调让你能调拒答线落在哪儿。闭源 API 提供有限的微调；开源模型让你想干啥干啥。
+3. **微调**（第 11 章） —— 对一个有自己定义良好的安全策略的企业部署，微调让你能调拒答线落在哪儿。闭源 API 提供有限的微调；开源模型让你想干啥干啥。
 4. **把拒答当信号** —— 有时候正确的产品行为是检测到拒答之后，礼貌地告诉用户"这个我没法帮上忙"，并把对话路由到别处。
 
 ## 这三件事需要测量，而不是凭感觉
 
 幻觉率、注入成功率、误拒率都是**分布**，不是布尔值。你没法靠在 notebook 里试几条 prompt 就把它们抓出来。你要在带标签的 fixture 上测它们，每次改 prompt 或换模型时跟踪回归，并对那些没法简化为字符串相等的评分器，使用一个独立的"裁判"模型。
 
-这就是**第 11 章（评测与可观测性）**。它的核心信息和第 0 章 §6 关于非确定性的信息是一致的：别再期待单元测试，开始期待分布。
+这就是**第 13 章（评测与可观测性）**。它的核心信息和第 0 章 §6 关于非确定性的信息是一致的：别再期待单元测试，开始期待分布。
 
 ---
 
@@ -92,4 +92,4 @@ Prompt 注入是 LLM 时代相当于 2005 年 SQL 注入的那个东西——一
 - Anthropic, [*Building effective agents*](https://www.anthropic.com/engineering/building-effective-agents) —— 工具调用与编排的正确心智模型；第 4 章之前的必读。
 - OpenAI, [*Structured Outputs*](https://platform.openai.com/docs/guides/structured-outputs) —— 从 API 使用者视角对 schema 约束生成最详尽的一篇说明。
 - Simon Willison, [*Prompt injection: what's the worst that can happen?*](https://simonwillison.net/2023/Apr/14/worst-that-can-happen/) —— 至今对"为什么这一类漏洞是结构性的"讲得最清楚的一篇。
-- Anthropic, [*Prompt caching*](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) —— 操作指南；机制在第 7 章。
+- Anthropic, [*Prompt caching*](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) —— 操作指南；机制在第 9 章。

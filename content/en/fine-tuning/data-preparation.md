@@ -117,7 +117,7 @@ If every label position has a non-(-100) value, you're training on user prompts.
 
 ## Quality > quantity
 
-Counter-intuitive but well-documented in 2025–26 ([Chapter 10 §6](../post-training)): **500 carefully written examples often beat 10,000 lightly cleaned ones**. The "few but excellent" pattern works because:
+Counter-intuitive but well-documented in 2025–26 ([Chapter 12 §6](../post-training)): **500 carefully written examples often beat 10,000 lightly cleaned ones**. The "few but excellent" pattern works because:
 
 - The model already knows how to generate text — you're just teaching it a specific behavior. A small number of clean examples points the gradient cleanly in that direction.
 - Bad examples actively confuse the model. A single contradicting example can undo the signal from a hundred consistent ones.

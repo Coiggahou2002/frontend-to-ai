@@ -12,7 +12,7 @@ This distinction leads to a key insight: **decode becomes more efficient with la
 
 ## KV Cache (recap)
 
-KV cache is one of the most significant VRAM consumers during LLM inference. We covered the why in [Chapter 7](../kv-cache); here we just need the per-token formula because it's the engine of every concurrency calculation in the rest of this chapter.
+KV cache is one of the most significant VRAM consumers during LLM inference. We covered the why in [Chapter 9](../kv-cache); here we just need the per-token formula because it's the engine of every concurrency calculation in the rest of this chapter.
 
 In the Transformer self-attention mechanism, generating each new token requires attending to all previous tokens. Recomputing the Key and Value vectors for all previous tokens every time would cause computation to grow quadratically with sequence length.
 

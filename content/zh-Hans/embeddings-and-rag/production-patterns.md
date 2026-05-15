@@ -83,7 +83,7 @@ resp = llm.messages.create(
 )
 ```
 
-让这件事成立的 KV cache 机制在**第 7 章**讲。这里的要点：把你的 prompt 设计成稳定前缀*真的稳定*。如果你把时间戳、请求 ID、chunk 文本拼进 system prompt，你就白白把缓存搞坏了。
+让这件事成立的 KV cache 机制在**第 9 章**讲。这里的要点：把你的 prompt 设计成稳定前缀*真的稳定*。如果你把时间戳、请求 ID、chunk 文本拼进 system prompt，你就白白把缓存搞坏了。
 
 ## 5. 你真正会调的旋钮——按影响力排序
 

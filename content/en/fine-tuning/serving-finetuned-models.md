@@ -82,7 +82,7 @@ flowchart LR
 
 Internally the inference engine batches requests and applies the right adapter's `B@A` to each request's hidden states. The throughput cost of an adapter is small — a few percent overhead per active LoRA — and the memory cost is just the adapter size (tens of MB each).
 
-This is the pattern for SaaS multi-tenancy, A/B testing, and per-customer models. See [Chapter 8](../inference-concurrency) for how the underlying batching works.
+This is the pattern for SaaS multi-tenancy, A/B testing, and per-customer models. See [Chapter 10](../inference-concurrency) for how the underlying batching works.
 
 ### The "many adapters, one base" cost story
 
@@ -130,7 +130,7 @@ A reasonable progression for a team: prototype on a hosted API → evaluate qual
 
 ## What about prompt caching for fine-tunes?
 
-Fine-tuned models still benefit from prompt caching ([Chapter 7](../kv-cache) covers KV cache mechanics). The KV cache is a function of (model weights, input tokens) — different LoRAs on the same base produce different KV caches per adapter, but within one adapter, the same shared system prompt across requests is still cacheable. Most multi-LoRA serving stacks key the cache on `(adapter_id, prompt_prefix)`.
+Fine-tuned models still benefit from prompt caching ([Chapter 9](../kv-cache) covers KV cache mechanics). The KV cache is a function of (model weights, input tokens) — different LoRAs on the same base produce different KV caches per adapter, but within one adapter, the same shared system prompt across requests is still cacheable. Most multi-LoRA serving stacks key the cache on `(adapter_id, prompt_prefix)`.
 
 ## A summary table
 

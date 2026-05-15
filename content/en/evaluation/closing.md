@@ -13,7 +13,7 @@ Twelve chapters ago, the premise was: a frontend developer wants to become an AI
 - **Chapter 4** — How to give the model the ability to act. Tool design, the agent loop, planning and control, parallelism, safety budgets, the trajectory-based way to evaluate any of it.
 - **Chapters 5–8** — The hardware and serving reality. GPU sizing, the open-source infra stack, KV cache and prefix caching, inference concurrency.
 - **Chapters 9–10** — Changing the model itself. When to fine-tune, what post-training is, how the LoRA / SFT / RLHF stack fits together.
-- **Chapter 11** — How to know whether any of it works. The discipline that lets you change anything safely.
+- **Chapter 13** — How to know whether any of it works. The discipline that lets you change anything safely.
 
 That's the whole map: what the model does, how to call it, how to extend it with knowledge and tools, how to run it on real hardware, how to alter it, and how to measure it. That arc is enough to get from "I've used ChatGPT" to "I can ship AI features in production." The rest is depth on the parts you end up needing.
 
@@ -25,8 +25,8 @@ Real fields are bigger than any one book. Some directions deliberately not cover
 - **On-device and edge inference.** Running quantized models on phones, laptops, browsers (WebGPU, MLX, llama.cpp). Different cost structure, different deployment story, the same fundamentals.
 - **Training from scratch / pretraining.** This book stayed on the application and post-training side. The full pretraining stack — distributed training, data pipelines, infrastructure for thousand-GPU runs — is a separate discipline.
 - **Specific verticals.** Code agents, voice agents, legal-document AI, medical AI, scientific discovery. Each has its own deep playbook that builds on the basics here.
-- **Reinforcement learning from interaction.** Beyond the post-training-style RLHF in Chapter 10 — the full RL loop with environments, rewards, and self-improvement. This is where a lot of the frontier-model work is, but it lives one layer below the application engineering this book teaches.
-- **Safety, alignment, interpretability.** A real research area in its own right. The eval discipline in Chapter 11 is the practitioner-side overlap.
+- **Reinforcement learning from interaction.** Beyond the post-training-style RLHF in Chapter 12 — the full RL loop with environments, rewards, and self-improvement. This is where a lot of the frontier-model work is, but it lives one layer below the application engineering this book teaches.
+- **Safety, alignment, interpretability.** A real research area in its own right. The eval discipline in Chapter 13 is the practitioner-side overlap.
 
 You can pick any of these as a next learning project once the foundation here is solid.
 
@@ -52,7 +52,7 @@ Read the source of `vllm` or one of the eval tools mentioned in [§7](./tools). 
 
 This is a moving field. The libraries you'll use in 2027 may not be the libraries this book named in 2026. Models will get bigger, smaller, faster, cheaper, better at some tasks and worse at others in ways nobody currently predicts. Whole categories of tooling that don't exist yet will exist. Categories that exist today will be obsolete.
 
-The fundamentals from Chapter 0 — what the model does mechanically — won't change. The discipline from Chapter 11 — measuring distributions, not values; rates, not booleans — won't change. The arc in between has to be re-learned periodically as the libraries and providers move.
+The fundamentals from Chapter 0 — what the model does mechanically — won't change. The discipline from Chapter 13 — measuring distributions, not values; rates, not booleans — won't change. The arc in between has to be re-learned periodically as the libraries and providers move.
 
 That's actually the good news. If you've internalized the foundations and the eval discipline, the rest is rotating surface area you can keep up with. New model? Run the golden set. New framework? Trace it. New deployment target? Cost it out. The skills compound.
 

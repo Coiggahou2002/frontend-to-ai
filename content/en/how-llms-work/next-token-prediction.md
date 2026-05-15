@@ -48,7 +48,7 @@ This mechanism has consequences that frontend developers consistently underestim
 
 **There is no plan.** The model does not "decide what to say" and then write it. It writes one token, then looks at what it just wrote and writes the next. A long, coherent answer is the result of each successive token being a plausible continuation of all the previous ones — not the result of an outline.
 
-**There is no goal.** The model is not trying to be helpful, or correct, or to satisfy you. It is producing the next token according to learned patterns. "Helpfulness" is a property of the patterns, learned during training (we'll get to this in [§3](./completion-to-conversation) and again in Chapter 10 on post-training).
+**There is no goal.** The model is not trying to be helpful, or correct, or to satisfy you. It is producing the next token according to learned patterns. "Helpfulness" is a property of the patterns, learned during training (we'll get to this in [§3](./completion-to-conversation) and again in Chapter 12 on post-training).
 
 **There is no memory between calls.** Every forward pass is independent. After one call ends, the model's "state" is gone. We'll come back to this in [§4](./multi-turn).
 

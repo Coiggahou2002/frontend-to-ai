@@ -12,7 +12,7 @@ This is already a usable LLM. But base models are unreliable for chat — they m
 
 ## Chat Models Are Trained on Conversation Format
 
-Modern chat models (GPT-4, Claude, Llama-Instruct, Qwen-Chat, etc.) are base models that have been further trained on conversations in a specific format — a process called **post-training** or **instruction tuning** (Chapter 10 covers this in depth).
+Modern chat models (GPT-4, Claude, Llama-Instruct, Qwen-Chat, etc.) are base models that have been further trained on conversations in a specific format — a process called **post-training** or **instruction tuning** (Chapter 12 covers this in depth).
 
 The format uses **special tokens** that mark the boundaries between roles. Different model families use different markers, but they all do the same thing. Here's what a Qwen-style chat template looks like under the hood:
 

@@ -84,6 +84,6 @@ def summarize_ticket(ticket: dict) -> str:
 - 在 feature flag 后面同时上线两版 prompt，在真实流量上做对比。
 - 让一个非工程师（领域专家、编辑）不碰代码就能改 prompt。
 
-这就是 prompt 评测的入口。我们会把这一面讲深——评分器、回归追踪、judge 模型——放在**第 11 章（评测与可观测性）**。眼下，规则是：**prompt 住在自己的文件里，按名字加载，旁边放着 fixtures。**
+这就是 prompt 评测的入口。我们会把这一面讲深——评分器、回归追踪、judge 模型——放在**第 13 章（评测与可观测性）**。眼下，规则是：**prompt 住在自己的文件里，按名字加载，旁边放着 fixtures。**
 
 下一节: [System Prompt →](./system-prompts)

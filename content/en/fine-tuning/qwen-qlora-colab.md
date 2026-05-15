@@ -42,7 +42,7 @@ Framework / KV cache / scratch:            ~1-2 GB
 Total:                                     ~10-12 GB    ← fits comfortably
 ```
 
-[Chapter 5](../gpu-and-model-sizing) has the broader memory math; for a 3B model in 4-bit you have plenty of headroom. If you tried 7B + QLoRA you'd be tighter (~14GB) but it still fits.
+[Chapter 7](../gpu-and-model-sizing) has the broader memory math; for a 3B model in 4-bit you have plenty of headroom. If you tried 7B + QLoRA you'd be tighter (~14GB) but it still fits.
 
 ## CELL 1 — Install dependencies
 
@@ -88,7 +88,7 @@ print(f"Loaded {BASE_MODEL} in 4-bit.")
 Two things to watch:
 
 - **bf16 vs fp16.** T4 is pre-Ampere; it doesn't have bf16 hardware. Use fp16 everywhere. Newer GPUs (A100, RTX 30/40 series, H100) support bf16 and you should prefer it — wider dynamic range, fewer NaN issues during training. If you swap GPU, swap both `bnb_4bit_compute_dtype` and the trainer args together.
-- **`use_cache = False`.** The KV cache (Chapter 7) is for inference. During training with gradient checkpointing it conflicts; turn it off here, turn it back on after saving.
+- **`use_cache = False`.** The KV cache (Chapter 9) is for inference. During training with gradient checkpointing it conflicts; turn it off here, turn it back on after saving.
 
 ## CELL 3 — Attach LoRA adapters
 

@@ -1,6 +1,6 @@
 # 2. LoRA & QLoRA
 
-Full fine-tuning a 7B model in fp16 needs ~14GB of VRAM just for the weights, plus another ~28GB for optimizer state in Adam (`m` and `v` buffers, each fp32), plus gradients, plus activations. The realistic floor is ~80GB ([Chapter 5](../gpu-and-model-sizing) walks through the math). That's an A100 minimum, two H100s for 13B, and a small cluster for anything bigger. Out of reach for most.
+Full fine-tuning a 7B model in fp16 needs ~14GB of VRAM just for the weights, plus another ~28GB for optimizer state in Adam (`m` and `v` buffers, each fp32), plus gradients, plus activations. The realistic floor is ~80GB ([Chapter 7](../gpu-and-model-sizing) walks through the math). That's an A100 minimum, two H100s for 13B, and a small cluster for anything bigger. Out of reach for most.
 
 LoRA and QLoRA are the two tricks that drag this down to a single consumer GPU.
 
@@ -105,6 +105,6 @@ For 95% of cases in 2026, **the answer is LoRA or QLoRA**. Start there.
 
 ## Why this matters for the rest of the chapter
 
-QLoRA is the reason a developer with a Google account can fine-tune a real LLM. Without it, this chapter would be an essay about renting a cloud GPU. With it, the next four pages are runnable on a free Colab T4. [Chapter 5](../gpu-and-model-sizing) has the broader memory math; the takeaway here is that 4-bit base + LoRA adapters is the configuration that fits.
+QLoRA is the reason a developer with a Google account can fine-tune a real LLM. Without it, this chapter would be an essay about renting a cloud GPU. With it, the next four pages are runnable on a free Colab T4. [Chapter 7](../gpu-and-model-sizing) has the broader memory math; the takeaway here is that 4-bit base + LoRA adapters is the configuration that fits.
 
 Next: [Data Preparation →](./data-preparation)

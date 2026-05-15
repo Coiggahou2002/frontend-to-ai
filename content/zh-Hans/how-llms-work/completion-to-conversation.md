@@ -12,7 +12,7 @@
 
 ## Chat 模型在对话格式上做了进一步训练
 
-现代 chat 模型（GPT-4、Claude、Llama-Instruct、Qwen-Chat 等）是在基础模型的基础上，用特定格式的对话进一步训练的——这个过程叫**后训练（post-training）**或**指令微调（instruction tuning）**（第 10 章会深入讲）。
+现代 chat 模型（GPT-4、Claude、Llama-Instruct、Qwen-Chat 等）是在基础模型的基础上，用特定格式的对话进一步训练的——这个过程叫**后训练（post-training）**或**指令微调（instruction tuning）**（第 12 章会深入讲）。
 
 这种格式使用**特殊 token**来标记角色之间的边界。不同模型家族用不同的标记，但本质做的是同一件事。下面是 Qwen 风格的对话模板在底层长什么样：
 

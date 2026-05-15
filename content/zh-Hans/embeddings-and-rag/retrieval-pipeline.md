@@ -241,6 +241,6 @@ resp = llm.messages.create(
 )
 ```
 
-让这件事成立的 KV cache 会在**第 7 章**讲。
+让这件事成立的 KV cache 会在**第 9 章**讲。
 
 下一节: [重排与混合检索 →](./reranking-and-hybrid)

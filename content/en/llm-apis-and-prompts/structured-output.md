@@ -91,7 +91,7 @@ Different mechanism, same outcome: a Pydantic instance you can pass to your down
 
 ## Self-Hosted Equivalents
 
-If you serve open models on vLLM or SGLang, you have first-class structured output too — using libraries like **outlines** or **lm-format-enforcer**, or vLLM's built-in `guided_json` parameter. These libraries do the same thing closed-API providers do internally: at every decoding step, mask out tokens that would violate the schema. We'll touch on the inference-server side in Chapter 6.
+If you serve open models on vLLM or SGLang, you have first-class structured output too — using libraries like **outlines** or **lm-format-enforcer**, or vLLM's built-in `guided_json` parameter. These libraries do the same thing closed-API providers do internally: at every decoding step, mask out tokens that would violate the schema. We'll touch on the inference-server side in Chapter 8.
 
 ## Why This Matters Beyond the Current Chapter
 

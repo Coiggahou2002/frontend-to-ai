@@ -2,7 +2,7 @@
 
 In [Chapter 3](../embeddings-and-rag/why-rag) we drew the line: **fine-tune for behavior, RAG for knowledge.** This chapter is the engineering half of that — how to actually fine-tune a model, end to end, on hardware you already have access to.
 
-The companion chapter ([Chapter 10](../post-training)) covers the *theory* of post-training — SFT, DPO, RLHF, GRPO — at the level of "why these algorithms exist." This one stays in the engineer's seat: load a base model, attach LoRA adapters, format chat data, run training on a single GPU, evaluate, and serve. The locked example is **QLoRA on Qwen-3B**, which fits on a free Colab T4. Same code scales to bigger models on bigger GPUs.
+The companion chapter ([Chapter 12](../post-training)) covers the *theory* of post-training — SFT, DPO, RLHF, GRPO — at the level of "why these algorithms exist." This one stays in the engineer's seat: load a base model, attach LoRA adapters, format chat data, run training on a single GPU, evaluate, and serve. The locked example is **QLoRA on Qwen-3B**, which fits on a free Colab T4. Same code scales to bigger models on bigger GPUs.
 
 ## The whole pipeline at a glance
 
@@ -40,6 +40,6 @@ Every box in this diagram is a sub-page below. None of it is conceptually novel 
 6. [Serving Fine-Tuned Models](./serving-finetuned-models) — merging vs. adapter-aware serving; many LoRAs on one base.
 7. [Production Pitfalls](./production-pitfalls) — the failure modes you will hit, and how to avoid each.
 
-A note on scope: this chapter is engineering. [Chapter 10](../post-training) is the theoretical companion — read it for *why* SFT works, what DPO and GRPO are, and how human-preference data flows through training. We won't re-derive any of that here.
+A note on scope: this chapter is engineering. [Chapter 12](../post-training) is the theoretical companion — read it for *why* SFT works, what DPO and GRPO are, and how human-preference data flows through training. We won't re-derive any of that here.
 
 Next: [When to Fine-Tune →](./when-to-fine-tune)

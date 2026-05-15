@@ -2,7 +2,7 @@
 
 You saw in Chapter 0 §3 that the system prompt is not a separate channel. It is text inside the rendered chat template, prefixed with a `system` role marker. Mechanically, the model sees `system said: ...` followed by `user said: ...` and continues from the assistant slot.
 
-But the model was post-trained (Chapter 10) on millions of conversations where text in the system slot represented the operator's enduring instructions — a persona, a format, a policy. It learned to weight those instructions heavily and to keep applying them across many turns. So the system prompt **acts** stickier than a user message, even though there's no architectural enforcement.
+But the model was post-trained (Chapter 12) on millions of conversations where text in the system slot represented the operator's enduring instructions — a persona, a format, a policy. It learned to weight those instructions heavily and to keep applying them across many turns. So the system prompt **acts** stickier than a user message, even though there's no architectural enforcement.
 
 The "even though" is important. A long, insistent user message can absolutely override the system prompt. We'll come back to this when we discuss prompt injection ([§9](./failure-modes)).
 

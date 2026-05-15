@@ -71,6 +71,6 @@ If you're streaming tool-using output to a UI, the practical pattern is:
 
 ## Forward Reference
 
-Why is the second turn in a streaming chat so often faster than the first? The server has cached the KV state for the shared prefix between calls — system prompt, prior turns, retrieved context — and only has to do the prefill work for the new tokens. **Chapter 7 (KV Cache)** is the mechanism. **Chapter 8 (Inference Concurrency)** is how a serving stack manages that cache across many concurrent users.
+Why is the second turn in a streaming chat so often faster than the first? The server has cached the KV state for the shared prefix between calls — system prompt, prior turns, retrieved context — and only has to do the prefill work for the new tokens. **Chapter 9 (KV Cache)** is the mechanism. **Chapter 10 (Inference Concurrency)** is how a serving stack manages that cache across many concurrent users.
 
 Next: [Cost & Latency Basics →](./cost-and-latency)

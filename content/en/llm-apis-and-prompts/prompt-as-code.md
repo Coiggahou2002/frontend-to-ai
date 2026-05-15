@@ -84,6 +84,6 @@ Now the prompt is a first-class artifact. You can:
 - Ship two prompts behind a feature flag and compare them on real traffic.
 - Have a non-engineer (a domain expert, an editor) edit the prompt without touching code.
 
-This is the entry point to prompt evaluation. We'll go deep on that side — graders, regression tracking, judge models — in **Chapter 11 (Evaluation and Observability)**. For now, the rule is: **prompts live in their own files, are loaded by name, and have fixtures next to them.**
+This is the entry point to prompt evaluation. We'll go deep on that side — graders, regression tracking, judge models — in **Chapter 13 (Evaluation and Observability)**. For now, the rule is: **prompts live in their own files, are loaded by name, and have fixtures next to them.**
 
 Next: [System Prompts →](./system-prompts)

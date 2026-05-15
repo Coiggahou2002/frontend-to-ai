@@ -6,7 +6,7 @@ A methodology for judging post-training effectiveness, and a decision table for 
 
 Evaluating a post-trained model is far harder than evaluating a pre-trained one. Pre-training can be measured by perplexity, but post-training's objectives are multi-dimensional -- useful, safe, accurate, natural, format-compliant -- and these dimensions are hard to capture in a single number.
 
-[Chapter 11](../evaluation) is dedicated to evaluation and observability in production. Here we focus narrowly on judging "did this post-training run work?"
+[Chapter 13](../evaluation) is dedicated to evaluation and observability in production. Here we focus narrowly on judging "did this post-training run work?"
 
 ## Three tiers of evaluation methods
 

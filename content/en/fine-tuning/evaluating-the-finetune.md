@@ -102,7 +102,7 @@ Run these on **both** the base and the fine-tune. If the fine-tune fails generic
 - Lower the learning rate (try `1e-4` instead of `2e-4`).
 - Train for fewer epochs.
 - Reduce `r` (lower-rank delta, less capacity to overwrite).
-- Mix general-purpose data into your fine-tune set — even 10–20% generic instruction-following examples interspersed helps a lot ([Chapter 10 §2](../post-training) covers this as PPO-ptx).
+- Mix general-purpose data into your fine-tune set — even 10–20% generic instruction-following examples interspersed helps a lot ([Chapter 12 §2](../post-training) covers this as PPO-ptx).
 
 ## A minimal `eval.py`
 
@@ -184,6 +184,6 @@ For a real fine-tune on a real task:
 
 ## Forward link
 
-This page is the fine-tune-specific instance of a much bigger topic. **Chapter 11 (Evaluation and Observability)** covers eval as a discipline: golden sets, judge-model calibration, regression-rate tracking, the difference between offline benchmarks and online metrics. Read that next if you're shipping fine-tuned models to real users.
+This page is the fine-tune-specific instance of a much bigger topic. **Chapter 13 (Evaluation and Observability)** covers eval as a discipline: golden sets, judge-model calibration, regression-rate tracking, the difference between offline benchmarks and online metrics. Read that next if you're shipping fine-tuned models to real users.
 
 Next: [Serving Fine-Tuned Models →](./serving-finetuned-models)

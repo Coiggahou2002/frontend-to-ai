@@ -51,6 +51,6 @@ Eval is a loop. Production observability feeds back into the golden set. The gol
 7. [Tools & Platforms](./tools) — opinionated, capped at 3 named tools, oriented to 2026.
 8. [Closing](./closing) — the end of the book.
 
-The reader the rest of this chapter assumes is the one who finished Chapter 10: someone who can call models, build RAG, ship agents, fine-tune, and self-host. The thing they can't yet do is **know whether any of it actually works**. That's what this chapter is for.
+The reader the rest of this chapter assumes is the one who finished Chapter 12: someone who can call models, build RAG, ship agents, fine-tune, and self-host. The thing they can't yet do is **know whether any of it actually works**. That's what this chapter is for.
 
 Next: [The Eval Mindset →](./the-eval-mindset)

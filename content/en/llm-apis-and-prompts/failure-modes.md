@@ -60,7 +60,7 @@ Prompt injection is the LLM era's equivalent of SQL injection in 2005 — a cate
 
 The model declines to answer. Sometimes this is correct — the user really did ask for something harmful. Sometimes it's a false positive: the model interprets a benign medical question as "advice it shouldn't give," or treats a fictional violence prompt as a real threat.
 
-Why it happens: post-training (Chapter 10) shapes the model's behavior using human feedback or reward models. The training pushes it to refuse certain content. Like any classifier, it has false-positive and false-negative rates.
+Why it happens: post-training (Chapter 12) shapes the model's behavior using human feedback or reward models. The training pushes it to refuse certain content. Like any classifier, it has false-positive and false-negative rates.
 
 Mitigations:
 
@@ -73,7 +73,7 @@ Mitigations:
 
 Hallucination rate, injection success rate, and false-positive refusal rate are all **distributions**, not booleans. You can't catch them by trying a few prompts in a notebook. You measure them on labeled fixtures, you track regressions with each prompt or model change, and you use a separate "judge" model for graders that don't reduce to string equality.
 
-That's **Chapter 11 (Evaluation and Observability)**. Its core message is the same as Chapter 0 §6's message about non-determinism: stop expecting unit tests, start expecting distributions.
+That's **Chapter 13 (Evaluation and Observability)**. Its core message is the same as Chapter 0 §6's message about non-determinism: stop expecting unit tests, start expecting distributions.
 
 ---
 
@@ -92,4 +92,4 @@ That's **Chapter 3: Embeddings, Vector Search & RAG.**
 - Anthropic, [*Building effective agents*](https://www.anthropic.com/engineering/building-effective-agents) — the right mental model for tool use and orchestration; required reading before Chapter 4.
 - OpenAI, [*Structured Outputs*](https://platform.openai.com/docs/guides/structured-outputs) — the most thorough writeup of schema-constrained generation from the API user's perspective.
 - Simon Willison, [*Prompt injection: what's the worst that can happen?*](https://simonwillison.net/2023/Apr/14/worst-that-can-happen/) — still the clearest explanation of why this class of vulnerability is structural.
-- Anthropic, [*Prompt caching*](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) — the operational guide; mechanics are in Chapter 7.
+- Anthropic, [*Prompt caching*](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) — the operational guide; mechanics are in Chapter 9.

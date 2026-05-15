@@ -12,7 +12,7 @@
 - 降低学习率（试着减半）。
 - 减少 epoch。大多数 SFT 任务 1–3 个 epoch 就够了；10+ 是在求遗忘。
 - 减小 LoRA `r`（覆盖容量更小）。
-- **掺通用数据**——哪怕在你的任务数据里掺 10–20% 的通用 instruction 数据，都能保留大量通用行为。（[第 10 章 §2](../post-training) 把这件事叫 PPO-ptx。）
+- **掺通用数据**——哪怕在你的任务数据里掺 10–20% 的通用 instruction 数据，都能保留大量通用行为。（[第 12 章 §2](../post-training) 把这件事叫 PPO-ptx。）
 - 上线前永远在基座和微调上都跑一份"通用能力" eval（[§5](./evaluating-the-finetune)）。
 
 ## 2. Chat-template 不匹配
@@ -92,7 +92,7 @@ eval_set = [ex for ex in eval_set if hash_prompt(ex["messages"]) not in train_ha
 - 几条"v1 当年很烂"的 prompt 用来看那些是否被修了。
 - 你亲眼在生产里见过出错的 prompt。
 
-把回归集当 CI 测试套件来对待。如果你要改它，也给它打版本号（`v1`、`v2`……），并且永远不要在没有显式确认的情况下用一个旧版本的 set 跑新微调。[第 11 章](../evaluation) 讲一个真正产品级的 eval 纪律是什么样。
+把回归集当 CI 测试套件来对待。如果你要改它，也给它打版本号（`v1`、`v2`……），并且永远不要在没有显式确认的情况下用一个旧版本的 set 跑新微调。[第 13 章](../evaluation) 讲一个真正产品级的 eval 纪律是什么样。
 
 ## 7. 拒答策略回归
 
@@ -126,4 +126,4 @@ eval_set = [ex for ex in eval_set if hash_prompt(ex["messages"]) not in train_ha
 
 到这里你已经有了工程上需要的所有部件：什么时候微调、LoRA / QLoRA 的机械原理、怎么准备数据、怎么在便宜硬件上跑训练循环、怎么评估结果、怎么部署、以及那 8 个坑。同样的代码换更大的模型 + 更大的 GPU 是线性扩展的。
 
-接下来，这一切在底层是怎么工作的理论部分——[第 10 章](../post-training)。
+接下来，这一切在底层是怎么工作的理论部分——[第 12 章](../post-training)。
