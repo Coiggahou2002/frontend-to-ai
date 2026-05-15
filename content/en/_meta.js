@@ -6,6 +6,7 @@ export default {
   'embeddings-and-rag': '3. Embeddings, Vector Search & RAG',
   'agents-and-orchestration': '4. Agents, Tool Use & Orchestration',
   'backend-and-data': '5. Backend & Data for AI Apps',
+  'chat-frontend': '6. Building the Chat Frontend',
   'gpu-and-model-sizing': '7. GPU & Model Sizing',
   'ai-infra-stack': '8. AI Infrastructure Stack',
   'kv-cache': '9. KV Cache',

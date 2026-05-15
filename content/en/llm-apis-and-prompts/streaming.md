@@ -73,4 +73,87 @@ If you're streaming tool-using output to a UI, the practical pattern is:
 
 Why is the second turn in a streaming chat so often faster than the first? The server has cached the KV state for the shared prefix between calls — system prompt, prior turns, retrieved context — and only has to do the prefill work for the new tokens. **Chapter 9 (KV Cache)** is the mechanism. **Chapter 10 (Inference Concurrency)** is how a serving stack manages that cache across many concurrent users.
 
+## `create` vs `stream` — The Two API Calls
+
+Every LLM SDK gives you two ways to get a response. The difference is one HTTP behavior:
+
+| | `messages.create(...)` | `messages.stream(...)` |
+|---|---|---|
+| HTTP behavior | Send request, wait, receive one JSON response | Send request, receive a stream of SSE events |
+| Return type | `Message` object | Iterator / context manager yielding events |
+| When you get the first token | After *all* tokens are generated | After the *first* token is generated |
+| Use when | Backend pipelines, evals, batch classification | Chat UIs, voice pipelines, anything a human watches |
+
+The request body is identical — same model, same messages, same parameters. The only difference is whether the server holds the connection open and pushes incremental results.
+
+### Side-by-side: `create` vs `stream` (Anthropic Python SDK)
+
+```python
+import anthropic
+
+client = anthropic.Anthropic()
+params = dict(
+    model="claude-sonnet-4-6",
+    max_tokens=256,
+    messages=[{"role": "user", "content": "Explain BGP in two sentences."}],
+)
+
+# ── Synchronous create ──────────────────────────────────
+response = client.messages.create(**params)
+print(response.content[0].text)   # full text, available only after generation completes
+print(response.usage)             # Usage(input_tokens=..., output_tokens=...)
+
+# ── Streaming ────────────────────────────────────────────
+with client.messages.stream(**params) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)   # tokens arrive one-by-one
+    final = stream.get_final_message()
+
+print()
+print(final.usage)                # same Usage object, available after stream ends
+```
+
+Both calls consume the same number of tokens and cost the same amount. The only trade-off is latency profile: `create` gives you nothing until everything is ready; `stream` gives you the first token in ~200-400 ms.
+
+## SSE Event Types Under the Hood
+
+When you stream, the raw HTTP response is a sequence of `data:` lines. Each SDK parses these into typed event objects, but knowing the raw shape helps when you're debugging with `curl` or writing a custom client.
+
+**Anthropic event sequence:**
+
+```
+event: message_start       → { message: { id, model, usage: {input_tokens} } }
+event: content_block_start → { index: 0, content_block: { type: "text", text: "" } }
+event: content_block_delta → { index: 0, delta: { type: "text_delta", text: "BGP" } }
+event: content_block_delta → { index: 0, delta: { type: "text_delta", text: " is" } }
+  ... more content_block_delta events ...
+event: content_block_stop  → { index: 0 }
+event: message_delta       → { delta: { stop_reason: "end_turn" }, usage: {output_tokens} }
+event: message_stop        → {}
+```
+
+Key points:
+- `message_start` carries input token count (so you know cost before output begins).
+- Each `content_block_delta` carries a small piece of text. Concatenate them.
+- `message_delta` at the end carries `stop_reason` and `output_tokens`.
+- If the model calls a tool, you'll see a `content_block_start` with `type: "tool_use"` and `content_block_delta` events with `type: "input_json_delta"` instead.
+
+**OpenAI event sequence:**
+
+```
+data: {"id":"chatcmpl-...","choices":[{"index":0,"delta":{"role":"assistant","content":""},...}]}
+data: {"id":"chatcmpl-...","choices":[{"index":0,"delta":{"content":"BGP"},...}]}
+data: {"id":"chatcmpl-...","choices":[{"index":0,"delta":{"content":" is"},...}]}
+  ... more data lines ...
+data: {"id":"chatcmpl-...","choices":[{"index":0,"delta":{},"finish_reason":"stop"}],"usage":{...}}
+data: [DONE]
+```
+
+Key points:
+- Every line is `data: <json>`. No named event types — you distinguish by checking `delta.content`, `delta.tool_calls`, and `finish_reason`.
+- Usage is only included in the final chunk, and only if you set `stream_options={"include_usage": True}`.
+- The literal string `data: [DONE]` signals the stream is over.
+
+Both protocols use standard SSE, so any language with an HTTP client can consume them — you don't need the official SDK. But the SDKs handle reconnection, parsing, and typed objects, so use them unless you have a reason not to.
+
 Next: [Cost & Latency Basics →](./cost-and-latency)

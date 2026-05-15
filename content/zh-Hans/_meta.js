@@ -6,6 +6,7 @@ export default {
   'embeddings-and-rag': '3. Embeddings、向量检索与 RAG',
   'agents-and-orchestration': '4. Agent、工具调用与编排',
   'backend-and-data': '5. 后端与数据',
+  'chat-frontend': '6. 构建聊天前端',
   'gpu-and-model-sizing': '7. GPU 与大模型选型',
   'ai-infra-stack': '8. AI 基础设施',
   'kv-cache': '9. KV Cache',

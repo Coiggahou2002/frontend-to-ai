@@ -65,6 +65,40 @@ def brute_force_topk(query: np.ndarray, corpus: np.ndarray, k: int) -> list[int]
 
 向量 DB 的选择对检索*质量*几乎没影响。它影响的是你的运维、过滤需求和规模。要优化质量，靠切块、embedding 和重排——不是靠换向量 DB。
 
+### 对比矩阵
+
+更详细地看看每个 DB 给你什么：
+
+| DB | 部署模型 | 过滤 | Hybrid Search | 最大规模 | 计费模型 |
+|---|---|---|---|---|---|
+| **pgvector** | 自部署（你现有的 Postgres） | 基础（`WHERE` 子句，后置过滤） | 需要 `pg_search` / `ParadeDB` 插件 | 单实例 ~10M 向量 | 免费（OSS）；你只为 Postgres 实例付费 |
+| **Qdrant** | 自部署或 Qdrant Cloud | 高级（payload 索引，前置过滤） | 内置 sparse+dense 融合 | 100M+ 向量（分片） | 免费（OSS 自部署）；Cloud：按向量用量计费 |
+| **Pinecone** | 全托管 SaaS | Metadata 过滤（前置过滤） | 内置 sparse-dense | 1B+ 向量（serverless） | 按查询+存储计费；serverless 或 pod 两种模式 |
+| **Weaviate** | 自部署或 Weaviate Cloud | GraphQL 风格过滤 | 内置 BM25 + 向量 | 100M+ 向量 | 免费（OSS 自部署）；Cloud：按用量计费 |
+| **Chroma** | 嵌入式（进程内）或 client-server | `where` metadata 过滤 | 不内置 | ~1M 向量（单节点） | 免费（OSS） |
+
+### 决策树
+
+表格看不够，走一遍这个：
+
+```mermaid
+flowchart TD
+    A[你已经在跑 Postgres 吗？] -->|是| B["< 5M 向量？"]
+    A -->|否| D[需要高级过滤？]
+    B -->|是| C[pgvector]
+    B -->|否| D
+    D -->|是| E[Qdrant]
+    D -->|否| F[想要零运维？]
+    F -->|是| G[Pinecone]
+    F -->|否| E
+```
+
+### pgvector 留在现有 Postgres 里：什么时候是对的
+
+如果你已经在跑 Postgres，pgvector 几乎肯定是你的第一步。零新基础设施就能拿到向量检索——同一套备份、同一个连接池、同一个事务上下文。你的检索查询可以在一条 SQL 里 join 用户表、权限表和 metadata。对大多数 5M 向量以下的产品来说，这就是最甜的点：运维简单比向量检索的原始吞吐更重要。
+
+该毕业的时刻是你撞到三面墙之一：(1) 带过滤的检索延迟很重要，而你的过滤条件复杂（pgvector 在 ANN scan 之后才做后置过滤，代价高）；(2) 你需要真正的 hybrid search（BM25 + dense），又不想再装一个插件；(3) 语料量增长到单个 Postgres 实例已经吃力。任何一条命中，就该迁移到 Qdrant 或 Pinecone——我们在 [Ch.5 §7：从 pgvector 到专用向量 DB](/backend-and-data/pgvector-graduation) 里详细讲迁移过程。
+
 ## 用 Chroma 写一个内存里跑的小例子
 
 最快感受端到端的方式。`chromadb` 在进程内运行，不需要服务器。

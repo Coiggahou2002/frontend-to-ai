@@ -65,6 +65,40 @@ Brief mentions: **Weaviate** (full-featured, with built-in hybrid; heavier ops),
 
 The choice rarely matters for your retrieval *quality*. It matters for your ops, your filter requirements, and your scale. Optimize quality with chunking, embeddings, and reranking — not by switching vector DBs.
 
+### Comparison matrix
+
+A more detailed look at what each DB gives you:
+
+| DB | Hosting Model | Filtering | Hybrid Search | Max Scale | Pricing Model |
+|---|---|---|---|---|---|
+| **pgvector** | Self-hosted (your existing Postgres) | Basic (`WHERE` clauses, post-filter) | Via `pg_search` / `ParadeDB` add-on | ~10M vectors per instance | Free (OSS); you pay for the Postgres instance |
+| **Qdrant** | Self-hosted or Qdrant Cloud | Advanced (payload indexes, pre-filter) | Built-in sparse+dense fusion | 100M+ vectors (sharded) | Free (OSS self-host); Cloud: usage-based per vector |
+| **Pinecone** | Fully managed SaaS | Metadata filters (pre-filter) | Built-in sparse-dense | 1B+ vectors (serverless) | Pay-per-query + storage; serverless or pod-based |
+| **Weaviate** | Self-hosted or Weaviate Cloud | GraphQL-style filters | Built-in BM25 + vector | 100M+ vectors | Free (OSS self-host); Cloud: usage-based |
+| **Chroma** | Embedded (in-process) or client-server | `where` metadata filters | Not built-in | ~1M vectors (single node) | Free (OSS) |
+
+### Decision tree
+
+When the table isn't enough, walk this:
+
+```mermaid
+flowchart TD
+    A[Do you already run Postgres?] -->|Yes| B["< 5M vectors?"]
+    A -->|No| D[Need advanced filtering?]
+    B -->|Yes| C[pgvector]
+    B -->|No| D
+    D -->|Yes| E[Qdrant]
+    D -->|No| F[Want zero ops?]
+    F -->|Yes| G[Pinecone]
+    F -->|No| E
+```
+
+### When pgvector-in-existing-Postgres is the right call
+
+If you already run Postgres for your app data, pgvector is almost certainly your first move. You get vector search with zero new infrastructure — same backups, same connection pool, same transactions. Your retrieval queries can join against user tables, permission tables, and metadata in a single SQL statement. For most products under 5M vectors, this is the sweet spot: operational simplicity beats raw vector-search throughput.
+
+The moment to graduate is when you hit one of three walls: (1) filtered search latency matters and your filters are complex (pgvector post-filters after the ANN scan, which gets expensive), (2) you need real hybrid search (BM25 + dense) without bolting on another extension, or (3) your corpus is growing past what a single Postgres instance handles comfortably. When any of those arrive, move to Qdrant or Pinecone — we walk through that migration in detail in [Ch.5 §7: From pgvector to Dedicated Vector DB](/backend-and-data/pgvector-graduation).
+
 ## A working in-memory example with Chroma
 
 The fastest way to feel this end-to-end. `chromadb` runs in-process, no server needed.
